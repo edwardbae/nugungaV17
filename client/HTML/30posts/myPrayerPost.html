@@ -1,0 +1,60 @@
+<template name="myPrayerPost">
+        <div class="myGidoCardDiv divPostMyPrayers whiteDiv boxShadow">
+            <form class="myGidoPost">
+
+                <!-- <div class="mgcdHeader"> -->
+                    <!-- <a href="#" onclick="document.getElementById('fileID').click(); return false;">이미지 추가하기</a> -->
+                    <!-- <input type="file" id="fileID" style="visibility: hidden;" /> -->
+                <!-- </div> -->
+
+                <div class="mgcdBody">
+                    <div class="myGido">
+                        <textarea rows="6"     placeholder="오늘 성도님의 기도제목은?" name="prayerPost"></textarea>
+                    </div>
+                </div>
+
+                <div class="mgcdFooter container-fluid">
+                    <div class="row">
+                        <div class="col-xs-3 text-center">
+                            <select class="form-control">
+                                <option value="catFaith">신앙</option>
+                                <option value="catStudy">학업</option>
+                                <option value="catHealth">건강</option>
+                                <option value="catFinance">금전</option>
+                                <option value="catFamily">가족</option>
+                                <option value="catFriend">친구</option>
+                                <option value="catCurrentEvent">세상</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-3 text-center">
+                            <select class="form-control">
+                                <option value="toAll">모든성도</option>
+                                <option value="toGidoCircle">기도서클</option>
+                                <option value="toMyFriends">친구들</option>
+                                <option value="toOnlyMe">나에게</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-3 text-center">
+                            <select class="form-control">
+                                <option value="withoutName">익명으로</option>
+                                <option value="withName">나의이름으로</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-3 text-center">
+                            <select class="form-control">
+                                <option value="subjectGido">기도부탁</option>
+                                <option value="subjectShare">간증</option>
+                                <option value="subjectWords">말씀</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                    <button type="submit" class="btn postPrayerBtn">보내기</button>
+            </form>
+        </div>
+</template>

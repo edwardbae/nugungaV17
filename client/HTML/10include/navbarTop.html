@@ -1,0 +1,16 @@
+<template name="navbarTop">
+    <div class="navbar navbar-default navbar-fixed-top boxShadow2" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand">nugunga</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" style="border:none">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons}} <!-- here -->
+            </ul>
+        </div>
+    </div>
+</template>

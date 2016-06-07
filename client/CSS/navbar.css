@@ -1,0 +1,17 @@
+.navbar-brand{
+    font-size: 14px;
+}
+.footer-navbar{
+    height: 10%;
+    background: white;
+}
+.footer-navbar a{
+    text-decoration: none;
+    padding-top: 17px;
+    font-size: 20px;
+    color: #808080;
+}
+.footer-navbar .center{
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}

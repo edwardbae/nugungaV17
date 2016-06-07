@@ -1,0 +1,37 @@
+
+.magenta{
+    color: #ED4975;
+}
+.magentaDark{
+    color: #b21e45;
+}
+
+.textcolor20{
+    color: #333333;
+}
+.textcolor30{
+    color: #4d4d4d;
+}
+.textcolor50{
+    color: #808080;
+}
+.textcolor70{
+    color: #b3b3b3;
+}
+.textcolor90{
+    color: #e6e6e6;
+}
+
+
+.boxShadow0{
+    box-shadow: 1px 1px 3px #ccc;
+}
+.boxShadow1{
+    box-shadow: 2px 2px 6px #ccc;
+}
+.boxShadow2{
+    box-shadow: 0px 4px 6px #ccc;
+}
+.boxShadow3{
+    box-shadow: 0px -4px 6px #ccc;
+}
