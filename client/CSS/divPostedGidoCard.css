@@ -1,0 +1,98 @@
+.postedGidoCardDiv{
+    background: white;
+}
+.postedGidoCardDiv a{
+    text-decoration: none;
+}
+.pgcdHeader{
+    height: 70px;
+    font-size: .8em;
+    padding: 10px;
+    padding-left: 20px;
+    color: #9D9D9D;
+}
+.pgcdHeader .posterProfile {
+    padding-top: 7px;
+}
+.pgcdHeader .delete-post{
+    padding-top: 9px;
+    padding-right: 5px;
+    float: right;
+}
+.pgcdHeader .prayerAnswered{
+    padding-right: 20px;
+    padding-top: 7px;
+    float: right;
+}
+.pgcdHeader .prayerAnswered .checked{
+    color: red;
+    font-size: 2em;
+}
+
+.pgcdHeader img{
+    width: 50px;
+    height: 50px;
+}
+.pgcdHeader .posterName{
+    padding: 10px;
+    font-size: 12px;
+    color: #black;
+    font-weight: bold;
+}
+.pgcdBody{
+    color: #9D9D9D;
+}
+.pgcdBody img{
+    width: 100%;
+}
+.pgcdBody .delete-comment{
+    padding-right: 50px;
+    float: right;
+}
+.pgcdComment input{
+    width: 85%;
+}
+.pgcdFooter{
+    text-align: right;
+    font-size: 0.9em;
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+    color: #9D9D9D;
+    border-top: 1px solid #F2F2F2;
+}
+
+.pgcdFooter .center{
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+
+.commentPost{
+    padding-left: 40px;
+}
+
+.postedPrayer{
+    padding: 20px;
+    color: #4A4A4A;
+}
+.postedPrayerReplies li{
+    font-size: 0.9em;
+    color: #4A4A4A;
+    list-style: none;
+    padding-bottom: 7px;
+}
+.prayerBtn{
+    border: none;
+    /*background-color: #ED4975;*/
+    color: white;
+}
+
+.prayerTimer{
+    font-size: 2em;
+    color: red;
+}
+
+.modal-content{
+    background: yellow;
+     z-index: 100;
+}

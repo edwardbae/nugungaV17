@@ -1,17 +1,16 @@
 .myGidoCardDiv{
     background: white;
-    height: 260px;
+    height: 220px;
 }
 .mgcdHeader{
-    font-size: .8em;
-    padding-bottom: 0;
+    padding: 10px;
     padding-top: 20px;
     padding-left: 30px;
-    color: #9D9D9D;
-    border-bottom: 1px solid #F2F2F2;
+}
+.mgcdHeader input{
+    width: 90%;
 }
 .mgcdBody{
-    padding-top: 20px;
     padding-left: 30px;
     padding-right: 30px;
     color: #9D9D9D;
@@ -33,12 +32,7 @@
     padding: 0;
     margin: 0;
 }
-.postPrayerBtn{
-    border: 0;
-    margin-top: 10px;
-    padding: 10px;
-    width: 100%;
-}
+
 textarea{
     border: none;
     width: 100%;
@@ -52,4 +46,9 @@ textarea{
 }
 .floatLeft{
     float: left;
+}
+
+.postGidoBtn{
+    border: 0;
+    width: 100%;
 }
