@@ -8,8 +8,8 @@ Template.postedGidoCard.helpers({
 });
 
 
-Template.allGidoPage.helpers({
-    posts: function(){
+Template.allPostedGidoCard.helpers({
+    allPosts: function(){
         lastUpdated = Session.get('updated');
         return Posts.find({createdAt: { $lt: lastUpdated }},{sort:{createdAt: -1 }});
     },

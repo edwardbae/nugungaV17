@@ -1,6 +1,8 @@
 .myGidoCardDiv{
     background: white;
     height: 220px;
+    width: 90%;
+    margin: 0 auto;
 }
 .mgcdHeader{
     padding: 10px;
@@ -50,5 +52,6 @@ textarea{
 
 .postGidoBtn{
     border: 0;
-    width: 100%;
+    width: 80%;
+    border-radius: 0;
 }

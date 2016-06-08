@@ -35,3 +35,10 @@ accounts-password
 spectrum:accounts-kakao
 accounts-facebook
 ian:accounts-ui-bootstrap-3
+
+momentjs:moment
+oaf:moment-duration-format
+rzymek:moment-locale-ko
+
+aldeed:collection2
+kevohagan:sweetalert
