@@ -39,6 +39,15 @@
     color: #black;
     font-weight: bold;
 }
+.pgcdHeader button{
+    border: none;
+}
+
+
+
+
+
+
 .pgcdBody{
     color: #9D9D9D;
 }

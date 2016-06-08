@@ -3,15 +3,23 @@
 }
 .footer-navbar{
     height: 10%;
-    background: white;
+    background: #25675f;
 }
 .footer-navbar a{
     text-decoration: none;
     padding-top: 17px;
     font-size: 20px;
-    color: #808080;
+    color: white;
 }
 .footer-navbar .center{
     border-left: 1px solid #aaa;
     border-right: 1px solid #aaa;
+}
+
+.navbarTop{
+    background: #62b8ad;
+    color: white;
+}
+.navbarTop .navbar-brand{
+    color: white;
 }
