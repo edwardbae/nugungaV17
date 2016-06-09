@@ -40,5 +40,5 @@ momentjs:moment
 oaf:moment-duration-format
 rzymek:moment-locale-ko
 
-aldeed:collection2
 kevohagan:sweetalert
+raix:handlebar-helpers

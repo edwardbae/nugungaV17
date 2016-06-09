@@ -15,9 +15,12 @@
 .textcolor50{
     color: #808080;
 }
+
+/*horizontal lines*/
 .textcolor70{
     color: #b3b3b3;
 }
+
 .textcolor90{
     color: #e6e6e6;
 }
@@ -43,9 +46,14 @@
 .tifblueDark{
     color: #25675f;
 }
+
 .lightYellow{
     color: #fffcf7;
 }
+.midYellow{
+    color: #e0d4c0;
+}
+
 .lightPink{
     color: #feeff6;
 }

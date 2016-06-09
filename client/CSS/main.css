@@ -1,8 +1,11 @@
 body{
-    background: #fffcf7;
+    background: #e0d4c0;
     color: #333333;
     margin-top: 70px;
     margin-bottom: 50px;
     font-size: 16px;
     padding: 5px;
+}
+a{
+    color: #25675f;
 }

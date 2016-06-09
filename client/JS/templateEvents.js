@@ -38,7 +38,6 @@ Template.allGidoPage.events({
     }
 });
 
-var confirmDelete = 0;
 Template.postedGidoCard.events({
     //delete Post
     "click #delete-post": function(){
@@ -47,4 +46,41 @@ Template.postedGidoCard.events({
         }
     },
 
+    //check answered prayer
+    "click .prayerAnswerToggle": function(){
+        Posts.update(this._id, {
+            $set:{checked: ! this.checked}
+        });
+    },
+});
+
+Template.post.events({
+    "submit .pgcdComment": function(event){
+        var text = event.target.replyText.value;
+        var commentId = new Meteor.Collection.ObjectID();   //variable to insert a uniqueId to the comment.  makes it easier to delete the comment
+        Posts.update(
+            {_id:this._id},
+            {$push:{
+                    comments:{
+                        replyPost:text,
+                        createdAt:new Date(),
+                        userId: Meteor.userId(),
+                        username: Meteor.user().username,
+                        commentId: commentId._str
+                    }
+                }
+            });
+        event.target.replyText.value = "";
+        return false;
+    },
+    "click #delete-comment": function(event, template){
+        var tempCommentId = $(event.target).parent().find('#commentIdPass').text();
+        Posts.update(
+            {_id: template.data._id},
+            {$pull:{
+                comments: {
+                    commentId: tempCommentId
+                }}
+            });
+    },
 });
