@@ -9,10 +9,10 @@
                 <li>
                     <a href="{{pathFor 'post'}}">
                         <p>
-                            <strong>{{username}}:</strong>
+                            <strong>{{checkAnonymous anonymous username}}:</strong>
                         </p>
                         <p>
-                             {{gidoTitle}}
+                             {{truncateTitle gidoTitle}}
                         </p>
                         <p>
                              {{gidoPost}}

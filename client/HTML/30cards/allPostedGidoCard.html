@@ -6,10 +6,10 @@
                     <nav class="navbar navbar-default navbar-static-top">
                       <div class="container">
                         <div class="navbar-header">
-                          <a class="navbar-brand" href="#">{{gidoTitle}}</a>
+                          <a class="navbar-brand" href="#">{{truncateTitle gidoTitle}}</a>
                         </div>
                         <div class="userinfo">
-                            {{username}} - {{formattedDate}}
+                            <a id="sendToPosterPage" href="{{pathFor 'user'}}">{{checkAnonymous anonymous username userId}}</a> - {{formattedDate}}
                         </div>
 
                       </div>

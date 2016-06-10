@@ -1,3 +1,56 @@
-<template name="profile">
-    <h3>Profile</h3>
+<template name="profilePage">
+    <h2 class="centerText">개인 프로필</h2>
+    <br>
+{{#with currentUser}}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 col-sm-2">
+
+        </div>
+        <div class="col-xs-8 col-sm-10">
+            <form  class="edit-profileImages" enctype="multipart/form-data">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>새프로필 사진 업로드</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="file" name="profileImage" id="profileImage" style="visibility: hidden; display: none;">
+                                <a href="#" type="button" onclick="document.getElementById('profileImage').click(); return false;">이미지 찾기</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">업로드</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<form role="form">
+    <div class="input-group profileInput">
+      <span class="input-group-addon">아이디</span>
+      <input type="text" class="form-control" value={{username}}>
+    </div>
+    <div class="input-group profileInput">
+      <span class="input-group-addon">이메일 주소</span>
+      <input type="text" class="form-control" value={{emails.[0].address}}>
+    </div>
+    <div class="radio">
+        <label class="radio-inline"><input type="radio" name="optradio">남자</label>
+        <label class="radio-inline"><input type="radio" name="optradio">여자</label>
+    </div>
+    <button type="submit">정보 수정</button>
+</form>
+ {{/with}}
+<br><br><br>
+
+
+
+
 </template>

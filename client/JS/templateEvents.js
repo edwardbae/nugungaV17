@@ -84,3 +84,21 @@ Template.post.events({
             });
     },
 });
+
+Template.user.events({
+    "click #friendRequestBtn": function(event){
+        // var requestId = Session.get('postId');
+        tempuser=Meteor.users.find({"_id":"Lm5P9ePDaJfFsKW5q"})
+        console.log(tempuser);
+        // Meteor.update(
+        //     {_id:this._id},
+        //     {$push:{
+        //             friendship:{
+        //                 userId: Meteor.userId(),
+        //                 requestedAt:new Date(),
+        //                 status:0
+        //             }
+        //         }
+        //     });
+    }
+});

@@ -8,8 +8,8 @@ Template.registerHelper('formattedDate', function(){
 });
 Template.registerHelper('momentDate', function(){
     return moment(this.createdAt).format('MMMM Do YYYY, h:mm a');
-
 });
+
 Template.registerHelper('truncateTitle', function(text, length){
     if (text.length>20) {
         var newText = text.substring(20, length) + "  ...";
@@ -26,6 +26,15 @@ Template.registerHelper('truncateText', function(text, length){
         return text;
     }
 });
+
+Template.registerHelper('checkAnonymous', function(anonymous, username, userId){
+    if (anonymous === "0") {
+        return username;
+    } else {
+        return "익명의 기도";
+    }
+});
+
 
 //
 //
