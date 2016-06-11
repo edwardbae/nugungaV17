@@ -35,6 +35,20 @@ Template.registerHelper('checkAnonymous', function(anonymous, username, userId){
     }
 });
 
+Template.registerHelper('checkAnonymousLink', function(anonymous){
+    if (anonymous === "0") {
+        return 0;
+    } else {
+        return 1;
+    }
+});
+
+Template.registerHelper('findUsername', function(tempUserId){
+    tempObj = Meteor.users.findOne({"_id":tempUserId}).username;
+    return tempObj;
+    // return tempObj.username
+});
+
 
 //
 //

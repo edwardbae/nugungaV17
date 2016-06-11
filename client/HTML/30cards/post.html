@@ -1,0 +1,76 @@
+<template name="post">
+    <div class="postedGidoCardDiv boxShadow0 biggerfont">
+        <div class="pgcdHeader">
+            <nav class="navbar navbar-default navbar-static-top">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbaraaa{{_id}}" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </button>
+                  <a class="navbar-brand" href="#">{{truncateTitle gidoTitle}}</a>
+                </div>
+                <div id="navbaraaa{{_id}}" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">기도 작성일: {{momentDate}}</a></li>
+                    {{#if $eq currentUser.username username}}
+                        <li><a href="#" id="delete-post" style="color:#e99bb1;">기도지우기</a></li>
+                    {{else}}
+                        {{#if checkAnonymousLink anonymous}}
+                            <li><a href="#">익명의 기도</a></li>
+                        {{else}}
+                            <li><a href="#">기도 작성자: {{username}}</a></li>
+                        {{/if}}
+                    {{/if}}
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </nav>
+        </div>
+        <div class="pgcdBody">
+            <div class="postedPrayer">
+                {{gidoPost}}
+            </div>
+            <div class="postedPrayerReplies">
+                <ul>
+                    {{#each comments}}
+                        <li>
+                            <div class="commentPost">
+                            {{#if $eq currentUser.username username}}
+                                <div class="" style="background:#eff7f5">
+                                    <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{formattedDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
+                                    <button id="delete-comment">X</button>
+                                    <span id="commentIdPass" style="display:none;">{{commentId}}</span>
+                                </div>
+                            {{else}}
+                                <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{formattedDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
+                            {{/if}}
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+                <div class="text-center">
+                    <form class="pgcdComment">
+                        <input type="text" name="replyText" placeholder="댓글을 입력하세요"><br>
+                        <small style="color: #e99bb1; padding-top:5px;">댓글은 익명으로 쓸수 없으니 주의하시기 바랍니다</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="pgcdFooter">
+            <span class="totalPrayerTime">전체 기도시간 : <span class="magenta">00분{{prayerTime}}초</span></span> &nbsp;
+            <span class="">
+                나의 기도시간 <span id="output{{_id}}" class="magenta">00분00초</span>
+            </span>
+            <button class="btn btn-sm prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
+
+            <button class="btn btn-sm prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button>
+
+        </div> -->
+    </div>
+
+    <br>
+    <br>
+
+</template>

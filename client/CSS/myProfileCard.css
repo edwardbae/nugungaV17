@@ -36,4 +36,11 @@
 
 .myProfileCardDiv .friendBtn{
     margin-top: 10px;
+    margin-bottom: 20px;
+}
+.myProfileCardDiv .friendBtnBlock{
+    margin-bottom: 20px;
+}
+.myProfileCardDiv .friendBtnAccept{
+    margin-top: 10px;
 }

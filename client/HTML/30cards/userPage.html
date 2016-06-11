@@ -1,25 +1,26 @@
-<template name="poster">
-    Other Poster Page
-    {{#each postUser}}
+<template name="user">
+    Requested Friend User Page
+    {{#each requests}}
     <div class="myProfileCardDiv whiteDiv boxShadow1 container">
         <div class="row">
             <div class="col-xs-4 leftcolumn">
                 <div class="profileImg text-center">
                     <img src="/img/profileAnonymM.png" alt="" />
                 </div>
-                <div class="friendBtn text-center">
-                    {{#if $neq currentUser._id userId}}
-                        {{#if friendshipStatus}}
-                            <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block disabled">친구 신청 기다림</button>
-                        {{else}}
-                            <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block">친구 신청</button>
-                        {{/if}}
-                    {{/if}}
+                {{#if $neq currentUser._id userId}}
+
+                <div class="friendBtnAccept text-center">
+                    <button id="friendRequestAcceptBtn" type="button" class="btn btn-success btn-xs">친구연결</button>
+                    <button id="friendRequestDeclineBtn" type="button" class="btn btn-danger btn-xs ">친구거절</button>
                 </div>
+                <div class="friendBtnBlock text-center">
+                    <!-- <button id="friendRequestBlockBtn" type="button" class="btn btn-danger btn-xs ">막기</button> -->
+                </div>
+                {{/if}}
             </div>
             <div class="col-xs-8 rightcolumn">
                 <div class="username">
-                    {{username}} - {{userId}}
+                    {{findUsername initatedUser}} - {{initatedUser}}
                 </div>
                 <div class="selfIntro">
                     로렘 입숨은 출판이나 그래픽 디자인 시각적 연출 보여줄 사용하는 표준 채우기 텍스트

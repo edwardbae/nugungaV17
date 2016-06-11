@@ -9,7 +9,12 @@
                           <a class="navbar-brand" href="#">{{truncateTitle gidoTitle}}</a>
                         </div>
                         <div class="userinfo">
-                            <a id="sendToPosterPage" href="{{pathFor 'user'}}">{{checkAnonymous anonymous username userId}}</a> - {{formattedDate}}
+                            {{#if checkAnonymousLink anonymous}}
+                                익명의 기도 - {{formattedDate}}
+                            {{else}}
+                                <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{username}}</a> - {{formattedDate}}
+                                <!-- <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{checkAnonymous anonymous username userId}}</a> - {{formattedDate}} -->
+                            {{/if}}
                         </div>
 
                       </div>
@@ -36,8 +41,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
                     <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button> -->
                 </div>

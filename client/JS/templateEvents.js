@@ -85,20 +85,36 @@ Template.post.events({
     },
 });
 
-Template.user.events({
+Template.poster.events({
     "click #friendRequestBtn": function(event){
-        // var requestId = Session.get('postId');
-        tempuser=Meteor.users.find({"_id":"Lm5P9ePDaJfFsKW5q"})
-        console.log(tempuser);
-        // Meteor.update(
-        //     {_id:this._id},
-        //     {$push:{
-        //             friendship:{
-        //                 userId: Meteor.userId(),
-        //                 requestedAt:new Date(),
-        //                 status:0
-        //             }
-        //         }
-        //     });
+        var requestId = Session.get('postId');
+        tempPost=Posts.findOne({"_id":requestId});
+        FriendshipCollection.insert({
+            createdAt: new Date(),
+            initatedUser: Meteor.userId(),
+            recievedUser: tempPost.userId,
+            status:1
+        });
+        FlashMessages.sendSuccess("Message");
     }
+});
+Template.user.events({
+    "click #friendRequestAcceptBtn": function(event){
+        var requestId = Session.get('friendRequestId');
+        tempReq=FriendshipCollection.findOne({"_id":requestId});
+        FriendshipCollection.update({_id:tempReq._id}, {
+            $set:{status:2}});
+    },
+    "click #friendRequestDeclineBtn": function(event){
+        var requestId = Session.get('friendRequestId');
+        tempReq=FriendshipCollection.findOne({"_id":requestId});
+        FriendshipCollection.update({_id:tempReq._id}, {
+            $set:{status:3}});
+    },
+    "click #friendRequestBlockBtn": function(event){
+        var requestId = Session.get('friendRequestId');
+        tempReq=FriendshipCollection.findOne({"_id":requestId});
+        FriendshipCollection.update({_id:tempReq._id}, {
+            $set:{status:4}});
+    },
 });

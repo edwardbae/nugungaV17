@@ -1,0 +1,8 @@
+<template name="friendRequestCard">
+    <div class="friendRelationDiv boxShadow1">
+        최신 친구 요청:
+        {{#each friendRequests}}
+            <a href="{{pathFor 'user'}}">{{findUsername initatedUser}}</a>
+        {{/each}}
+    </div>
+</template>

@@ -3,7 +3,8 @@
 }
 .footer-navbar{
     height: 10%;
-    background: #25675f;
+    background: #57AFA3;
+    /*background: #25675f;*/
 }
 .footer-navbar a{
     text-decoration: none;
@@ -16,7 +17,8 @@
     border-right: 1px solid #aaa;
 }
 .navbarTop{
-    background: #25675f;
+    background: #57AFA3;
+    /*background: #25675f;*/
     color: white;
 }
 .navbarTop .navbar-brand{
