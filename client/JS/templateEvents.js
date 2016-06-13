@@ -9,7 +9,8 @@ Template.myGidoCard.events({
         var anonymous = event.target.anonymous.value;
         var subject = event.target.subject.value;
         if (!gidoPost) {
-            sweetAlert("주여..", "보낼 기도내용이 없습니다!", "error");
+            // sweetAlert("주여..", "보낼 기도내용이 없습니다!", "error");
+            FlashMessages.sendSuccess("Message");
         } else {
             Posts.insert({
                 gidoTitle:gidoTitle,

@@ -1,26 +1,6 @@
 <template name="answeredGidoPage">
-    <div id="divAnsweredPrayers" class="whiteDiv boxShadow0 fixedPos container-fluid">
-        <div class="divHeader">
-            최신 기도 응답 - 모든 성도에게 부탁한 기도중 응답받은 기도들만 이곳에 계시
-        </div>
-        <div class="divBody">
-            <ul>
-                {{#each answered}}
-                <li>
-                    <a href="{{pathFor 'post'}}">
-                        <p>
-                            <strong>{{checkAnonymous anonymous username}}:</strong>
-                        </p>
-                        <p>
-                             {{truncateTitle gidoTitle}}
-                        </p>
-                        <p>
-                             {{gidoPost}}
-                        </p>
-                    </a>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
-    </div>
+    <div class="text-center" style="color:pink; font-size:1.2em">
+        응답 받은 기도
+    </div><br>
+    {{> answeredPostedGidoCard}}
 </template>

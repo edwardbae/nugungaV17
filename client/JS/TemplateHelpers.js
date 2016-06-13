@@ -22,11 +22,23 @@ Template.allPostedGidoCard.helpers({
 });
 
 
-Template.answeredGidoPage.helpers({
+Template.answeredPostedGidoCard.helpers({
     answered: function(){
         return Posts.find({toWhom:"0", checked:true},{sort:{createdAt: -1 }});
     },
 });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Template.friendsPostedGidoCard.helpers({
+    friendsGido: function(){
+        aaa = FriendshipCollection.find({"initatedUser":Meteor.userId(), "status":1},{sort:{createdAt: -1 }});
+        return Posts.find({"userId":aaa.recievedUser},{sort:{createdAt: -1 }});
+    },
+});
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 Template.poster.helpers({
     users: function(){
@@ -82,4 +94,12 @@ Template.user.helpers({
         console.log(userReqId);
         return FriendshipCollection.find({_id:userReqId})
     },
+});
+
+Template.notify.helpers({
+    alarm: function(){
+        if (true) {
+            FlashMessages.sendWarning("New Friend Request");
+        }
+    }
 });

@@ -1,7 +1,6 @@
 .allGidoPage .updateBtn{
-    color: #e99bb1;
-    width: 90%;
-    border-radius: 0;
+    color: #333333;
+    width: 70%;
     margin-bottom: 20px;
     border: 1px solid #eee;
 }

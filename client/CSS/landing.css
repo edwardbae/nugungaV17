@@ -1,7 +1,4 @@
 .landingPage{
-    background: white;
-}
-.landingPage img{
-    padding-top: 30px;
-    width: 100%;
+    font-size: 3em;
+    color: #808080;
 }

@@ -5,7 +5,11 @@
 .magentaDark{
     color: #b21e45;
 }
-
+/*mainBG*/
+.textcolor10{
+    color: #101010;
+}
+/*navbar color*/
 .textcolor20{
     color: #333333;
 }
@@ -59,4 +63,9 @@
 }
 .darkPink{
     color: #e99bb1;
+}
+
+
+.lightOrange{
+    color: #fff2dd;
 }

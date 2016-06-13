@@ -1,28 +1,18 @@
 <template name="allPostedGidoCard">
         {{#each allPosts}}
-        <div class="postedGidoCardDiv boxShadow1">
+        <div class="postedGidoCardDiv">
                 <div class="pgcdHeader">
 
                     <nav class="navbar navbar-default navbar-static-top">
                       <div class="container">
                         <div class="navbar-header">
-                          <a class="navbar-brand" href="#">{{truncateTitle gidoTitle}}</a>
+                          <a class="navbar-brand">{{truncateTitle gidoTitle}}</a>
+                          <a class="navbar-brand" style="float:right">{{formattedDate}}</a>
                         </div>
-                        <div class="userinfo">
-                            {{#if checkAnonymousLink anonymous}}
-                                익명의 기도 - {{formattedDate}}
-                            {{else}}
-                                <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{username}}</a> - {{formattedDate}}
-                                <!-- <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{checkAnonymous anonymous username userId}}</a> - {{formattedDate}} -->
-                            {{/if}}
-                        </div>
-
                       </div>
                     </nav>
-
                 </div>
                 <div class="pgcdBody">
-
                     <div class="postedPrayer">
                         {{gidoPost}}
                     </div>
@@ -31,7 +21,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-4 text-center">
-                                <span class="{{#if checked}}checked{{/if}}"><label><input class="prayerAnswerToggle myCheckbox" type="checkbox" checked={{checked}}>응답 </label></span>
+                                <div class="userinfo">
+                                        {{#if checkAnonymousLink anonymous}}
+                                            익명
+                                        {{else}}
+                                            <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{username}}</a>
+                                        {{/if}}
+                                </div>
                             </div>
                             <div class="center col-xs-4 text-center">
                                 <i class="fa fa-clock-o" aria-hidden="true"> 시간</i>

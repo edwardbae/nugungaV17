@@ -1,12 +1,12 @@
 <template name="myProfileCard">
-    <div class="myProfileCardDiv whiteDiv boxShadow1 container">
+    <div class="myProfileCardDiv whiteDiv container">
         <div class="row">
             <div class="col-xs-4 leftcolumn profileImg text-center">
                     <img src="img/profileAnonymM.png" alt="" />
             </div>
             <div class="col-xs-8 rightcolumn">
                 <div class="username">
-                    {{currentUser.username}}
+                    {{currentUser.username}}-{{currentUser._id}}
                 </div>
                 <div class="selfIntro">
                     로렘 입숨은 출판이나 그래픽 디자인 시각적 연출 보여줄 사용하는 표준 채우기 텍스트

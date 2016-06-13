@@ -3,9 +3,11 @@
 </body>
 
 <template name="layout">
+    {{> flashMessages}}
     {{> navbarTop}}
     {{> yield}}
     {{#if currentUser}}
         {{> navbarBottom}}
     {{/if}}
+
 </template>
