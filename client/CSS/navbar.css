@@ -28,3 +28,7 @@
 .navbar{
     border: 0;
 }
+.footer-navbar .fa{
+    padding-top: 0;
+    margin-top:5px;
+}
