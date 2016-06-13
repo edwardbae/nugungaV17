@@ -7,7 +7,7 @@ Template.registerHelper('formattedDate', function(){
     return moment(this.createdAt).fromNow();
 });
 Template.registerHelper('momentDate', function(){
-    return moment(this.createdAt).format('MMMM Do YYYY, h:mm a');
+    return moment(this.createdAt).format('MMMM Do YYYY');
 });
 
 Template.registerHelper('truncateTitle', function(text, length){
@@ -49,9 +49,21 @@ Template.registerHelper('findUsername', function(tempUserId){
     // return tempObj.username
 });
 
+Template.registerHelper('checkToWhom', function(toWhom){
+    if (toWhom === "0") {
+        return "모든성도"
+    } else if (toWhom === "1") {
+        return "기도친구"
+    } else {
+        return "나에게만"
+    }
+});
 
-//
-//
-// Template.registerHelper('location', function(){
-//     return this.latlong;
-// });
+Template.registerHelper('checkComment', function(commentId){
+    tempObj = Posts.findOne({"_id":commentId});
+    if (!tempObj.comments) {
+        return 0;
+    } else {
+        return tempObj.comments.length;
+    }
+});

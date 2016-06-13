@@ -1,6 +1,6 @@
 <template name="post">
     <div class="postedGidoCardDiv boxShadow0 biggerfont">
-        <div class="pgcdHeader">
+        <!-- <div class="pgcdHeader">
             <nav class="navbar navbar-default navbar-static-top">
               <div class="container">
                 <div class="navbar-header">
@@ -23,9 +23,18 @@
                         {{/if}}
                     {{/if}}
                   </ul>
-                </div><!--/.nav-collapse -->
+                </div>
               </div>
             </nav>
+        </div> -->
+
+        <div class="pgcdHeader">
+            <a>{{momentDate}}년</a>
+            {{#if $eq currentUser.username username}}
+                <a href="#" id="delete-post" style="color:#e99bb1;"><span style="float:right"> &middot; 기도지우기 </span></a>
+            {{/if}}
+            <a><span style="float:right">{{checkToWhom toWhom}}</span></a>
+            <a><span style="float:right">{{checkAnonymous anonymous username}} &middot;	</span></a>
         </div>
         <div class="pgcdBody">
             <div class="postedPrayer">

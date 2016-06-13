@@ -1,8 +1,9 @@
 .navbar-brand{
-    font-size: 14px;
+    font-size: 17px;
+    font-weight: bold;
 }
 .footer-navbar{
-    height: 10%;
+    height: 12%;
     background: #333333;
     /*background: #25675f;*/
 }

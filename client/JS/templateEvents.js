@@ -1,37 +1,33 @@
 Template.myGidoCard.events({
     //insert post
     "submit .myGidoPost": function(event){
-
-        var gidoTitle = event.target.gidoTitle.value;
+        // var gidoTitle = event.target.gidoTitle.value;
+        // var category = event.target.category.value;
+        // var subject = event.target.subject.value;
         var gidoPost = event.target.gidoPost.value;
-        var category = event.target.category.value;
         var toWhom = event.target.toWhom.value;
         var anonymous = event.target.anonymous.value;
-        var subject = event.target.subject.value;
         if (!gidoPost) {
-            // sweetAlert("주여..", "보낼 기도내용이 없습니다!", "error");
-            FlashMessages.sendSuccess("Message");
+            sweetAlert("주여..", "보낼 기도내용이 없습니다!", "error");
         } else {
             Posts.insert({
-                gidoTitle:gidoTitle,
+                // gidoTitle:gidoTitle,
+                // category: category,
+                // subject: subject,
                 gidoPost:gidoPost,
                 createdAt: new Date(),
-                category: category,
                 toWhom: toWhom,
                 anonymous: anonymous,
-                subject: subject,
                 userId: Meteor.userId(),
                 username: Meteor.user().username
             });
-            event.target.gidoTitle.value = "";
+            // event.target.gidoTitle.value = "";
             event.target.gidoPost.value = "";
             sweetAlert("아멘..", "성도님의 기도내용을 포스팅 했습니다!", "success");
-
         }
         return false;
     },
 });
-
 
 Template.allGidoPage.events({
     "click #showNewPosts": function(event, template){

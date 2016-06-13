@@ -1,46 +1,41 @@
 <template name="allPostedGidoCard">
-        {{#each allPosts}}
+    {{#each allPosts}}
         <div class="postedGidoCardDiv">
-                <div class="pgcdHeader">
-
-                    <nav class="navbar navbar-default navbar-static-top">
-                      <div class="container">
-                        <div class="navbar-header">
-                          <a class="navbar-brand">{{truncateTitle gidoTitle}}</a>
-                          <a class="navbar-brand" style="float:right">{{formattedDate}}</a>
-                        </div>
-                      </div>
-                    </nav>
-                </div>
-                <div class="pgcdBody">
-                    <div class="postedPrayer">
-                        {{gidoPost}}
-                    </div>
-                </div>
-                <div class="pgcdFooter" style="background:#ddd; color:#333333">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-4 text-center">
-                                <div class="userinfo">
-                                        {{#if checkAnonymousLink anonymous}}
-                                            익명
-                                        {{else}}
-                                            <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{username}}</a>
-                                        {{/if}}
-                                </div>
-                            </div>
-                            <div class="center col-xs-4 text-center">
-                                <i class="fa fa-clock-o" aria-hidden="true"> 시간</i>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <a href="{{pathFor 'post'}}" class="fa fa-comments" aria-hidden="true"> 댓글</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
-                    <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button> -->
+            <div class="pgcdHeader">
+                <div class="userinfo">
+                    <span style="float:right">{{momentDate}}년</span>
                 </div>
             </div>
-            <br>
-        {{/each}}
+
+            <div class="pgcdBody">
+                <div class="postedPrayer">
+                    {{gidoPost}}
+                </div>
+            </div>
+            <div class="pgcdFooter" style="background:#ddd; color:#333333">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-4 text-center">
+                            <div class="userinfo">
+                                    {{#if checkAnonymousLink anonymous}}
+                                        <img src="img/profileAnonymM.png" alt="" style="width:26px; height:26px;"/> 익명
+                                    {{else}}
+                                        <img src="img/profileAnonymM.png" alt="" style="width:26px; height:26px;"/> <a id="sendToPosterPage" href="{{pathFor 'poster'}}">{{username}}</a>
+                                    {{/if}}
+                            </div>
+                        </div>
+                        <div class="center col-xs-4 text-center">
+                            <i class="fa fa-clock-o" aria-hidden="true"> 시간</i>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a href="{{pathFor 'post'}}" class="fa fa-comments" aria-hidden="true"> 댓글 ({{checkComment _id}})</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
+                <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button> -->
+            </div>
+        </div>
+        <br>
+    {{/each}}
 </template>

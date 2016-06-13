@@ -2,16 +2,16 @@
     background: white;
     width: 90%;
     margin: 0 auto;
-
 }
 .postedGidoCardDiv a{
     text-decoration: none;
 }
 .pgcdHeader{
-    height: 70px;
     font-size: .8em;
-    padding: 10px;
+    padding-top: 15px;
+    padding-right: 25px;
     padding-left: 20px;
+    padding-bottom: 0;
     color: #9D9D9D;
 }
 .pgcdHeader .navbar{
