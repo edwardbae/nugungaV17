@@ -3,11 +3,15 @@
 </body>
 
 <template name="layout">
+    <div id="messageDiv{{currentUser._id}}">
     {{> flashMessages}}
+    </div>
+    {{updateFriendshipStatus}}
+    {{checkNewMessages}}
+
     {{> navbarTop}}
     {{> yield}}
     {{#if currentUser}}
         {{> navbarBottom}}
     {{/if}}
-
 </template>

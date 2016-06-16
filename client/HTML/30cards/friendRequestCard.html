@@ -1,8 +1,39 @@
 <template name="friendRequestCard">
-    <div class="friendRelationDiv boxShadow1">
+    <div class="friendRelationDiv">
         최신 친구 요청:
-        {{#each friendRequests}}
-            <a href="{{pathFor 'user'}}">{{findUsername initatedUser}}</a>
+        {{#each friendRequestsFunc}}
+            <br>
+            <a href="/user/{{this}}">{{findUsername this}}</a>
+        {{/each}}
+    </div>
+</template>
+
+<template name="friendListCard">
+    <div class="friendRelationDiv">
+        친구 리스트:
+        {{#each friendListFunc}}
+            <br>
+            <a href="{{pathFor 'user'}}">{{findUsername this}}</a>
+        {{/each}}
+    </div>
+</template>
+
+<template name="friendRequestSentCard">
+    <div class="friendRelationDiv">
+        친구 신청 기다림:
+        {{#each friendRequestSentFunc}}
+            <br>
+            <a href="#">{{findUsername this}}</a>
+        {{/each}}
+    </div>
+</template>
+
+<template name="friendRequestDeclinedCard">
+    <div class="friendRelationDiv boxShadow1">
+        친구 declined:
+        {{#each friendRequestDeclinedFunc}}
+            <br>
+            <a href="#">{{findUsername this}}</a>
         {{/each}}
     </div>
 </template>

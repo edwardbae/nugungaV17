@@ -1,6 +1,10 @@
 <template name="friendsPostedGidoCard">
-        {{#each friendsGido}}
-        <div class="postedGidoCardDiv">
+    {{#each friendsGido currentUser._id}}
+        {{this}}
+        <!-- {{tempArray.gidoPost}} -->
+        <!-- {{#each friendsGido}} -->
+<!-- {{friendsGido}} -->
+        <!-- <div class="postedGidoCardDiv">
                 <div class="pgcdHeader">
 
                     <nav class="navbar navbar-default navbar-static-top">
@@ -37,10 +41,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
-                    <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button> -->
                 </div>
             </div>
-            <br>
-        {{/each}}
+            <br> -->
+            {{/each}}
 </template>

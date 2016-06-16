@@ -10,9 +10,13 @@
                 <div class="friendBtn text-center">
                     {{#if $neq currentUser._id userId}}
                         {{#if friendshipStatus}}
-                            <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block disabled">친구 신청 기다림</button>
+                            <button type="button" class="btn btn-warning btn-xs btn-block disabled">친구 신청 기다림</button>
                         {{else}}
-                            <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block">친구 신청</button>
+                            <!-- {{#if alreadyFriend userId}}
+                                <button type="button" class="btn btn-info btn-xs btn-block disabled">친구</button>
+                            {{else}} -->
+                                <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block">친구 신청</button>
+                            <!-- {{/if}} -->
                         {{/if}}
                     {{/if}}
                 </div>

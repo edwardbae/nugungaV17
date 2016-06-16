@@ -84,34 +84,96 @@ Template.post.events({
 
 Template.poster.events({
     "click #friendRequestBtn": function(event){
-        var requestId = Session.get('postId');
-        tempPost=Posts.findOne({"_id":requestId});
-        FriendshipCollection.insert({
-            createdAt: new Date(),
-            initatedUser: Meteor.userId(),
-            recievedUser: tempPost.userId,
-            status:1
-        });
-        FlashMessages.sendSuccess("Message");
+        var tempPostObj = Posts.findOne({"_id":Session.get('postId')});
+        var checkStatus = 0;
+        if (Meteor.user().profile.friendRequestPending) {
+            for (var i = 0; i < Meteor.user().profile.friendRequestPending.length; i++) {
+                if (Meteor.user().profile.friendRequestPending[i] === tempPostObj.userId) {
+                    checkStatus += 1;
+                }
+            }
+        };
+        if (Meteor.user().profile.friendRequestSent) {
+            for (var i = 0; i < Meteor.user().profile.friendRequestSent.length; i++) {
+                if (Meteor.user().profile.friendRequestSent[i] === tempPostObj.userId) {
+                    checkStatus += 1;
+                }
+            }
+        };
+        if (Meteor.user().profile.friendConnected) {
+            for (var i = 0; i < Meteor.user().profile.friendConnected.length; i++) {
+                if (Meteor.user().profile.friendConnected[i] === tempPostObj.userId) {
+                    checkStatus += 1;
+                }
+            }
+        };
+
+        if (checkStatus === 0) {
+            FriendshipCollection.insert({
+                createdAt: new Date(),
+                initiatedUser: Meteor.userId(),
+                initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
+                receivedUser: tempPostObj.userId,
+                receivedUsername: tempPostObj.username,
+                status:1,
+            });
+            Meteor.users.update(
+                    {_id:Meteor.userId()},
+                    {$push :
+                        {'profile.friendRequestPending':tempPostObj.userId}
+                    }
+            );
+        } else {
+            FlashMessages.sendError("이미 친구 신청을 보냈습니다");
+        };
     }
 });
+
 Template.user.events({
     "click #friendRequestAcceptBtn": function(event){
-        var requestId = Session.get('friendRequestId');
-        tempReq=FriendshipCollection.findOne({"_id":requestId});
-        FriendshipCollection.update({_id:tempReq._id}, {
-            $set:{status:2}});
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$push :
+                    {'profile.friendRequestAccepted':Session.get('friendRequestId')}
+                }
+        );
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$pull :
+                    {'profile.friendRequestPending':Session.get('friendRequestId')}
+                }
+        );
+        FriendshipCollection.insert({
+            createdAt: new Date(),
+            initiatedUser: Meteor.userId(),
+            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
+            receivedUser: Session.get('friendRequestId'),
+            status:2,
+        });
     },
     "click #friendRequestDeclineBtn": function(event){
-        var requestId = Session.get('friendRequestId');
-        tempReq=FriendshipCollection.findOne({"_id":requestId});
-        FriendshipCollection.update({_id:tempReq._id}, {
-            $set:{status:3}});
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$push :
+                    {'profile.friendRequestDeclined':Session.get('friendRequestId')}
+                }
+        );
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$pull :
+                    {'profile.friendRequestPending':Session.get('friendRequestId')}
+                }
+        );
+        FriendshipCollection.insert({
+            createdAt: new Date(),
+            initiatedUser: Meteor.userId(),
+            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
+            receivedUser: Session.get('friendRequestId'),
+            status:3,
+        });
     },
-    "click #friendRequestBlockBtn": function(event){
-        var requestId = Session.get('friendRequestId');
-        tempReq=FriendshipCollection.findOne({"_id":requestId});
-        FriendshipCollection.update({_id:tempReq._id}, {
-            $set:{status:4}});
-    },
+    // "click #friendRequestDeclineBtn": function(event){
+    //     FriendshipCollection.update({_id:Session.get('friendRequestId')}, {
+    //         $set:{status:3}});
+    // },
 });
