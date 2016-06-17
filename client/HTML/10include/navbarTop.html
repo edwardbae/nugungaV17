@@ -1,20 +1,22 @@
 <template name="navbarTop">
-    <div class="navbar navbar-default navbar-fixed-top navbarTop" role="navigation">
-        <div class="navbar-header ">
-            <a class="navbar-brand">nugunga gido app</a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMain" style="border:none">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </button>
+    <nav class="navbar navbar-default navbar-fixed-top boxShadow1">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMain" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-cog" aria-hidden="true" style="color:#808080"></i>
+                </button>
+                <a class="navbar-brand" href="#" style="color:#69a2b2;">{{renderSession}}</a>
+            </div>
+            <div id="navbarMain" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    {{#if currentUser}}
+                    <li class="active"><a href="{{pathFor 'friendRequestPage'}}">친구 관리</a></li>
+                    <li><a href="">설정</a></li>
+                    {{/if}}
+                    {{> loginButtons}}
+                </ul>
+            </div>
         </div>
-        <div id="navbarMain" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                {{#if currentUser}}
-                <li><a href="{{pathFor 'friendRequestPage'}}">친구 관리</a></li>
-                <li><a href="">설정</a></li>
-                {{/if}}
-                {{> loginButtons}} <!-- here -->
-            </ul>
-        </div>
-    </div>
+    </nav>
 </template>

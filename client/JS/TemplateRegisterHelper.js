@@ -191,3 +191,9 @@ Template.registerHelper('updateFriendshipStatus', function(){
 // //         }
 // //     }
 // // });
+
+
+Template.registerHelper('renderSession', function(){
+        lastUpdated = Session.get('pageTitle');
+        return lastUpdated;
+});

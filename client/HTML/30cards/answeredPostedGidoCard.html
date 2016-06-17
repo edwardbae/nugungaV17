@@ -1,6 +1,6 @@
 <template name="answeredPostedGidoCard">
         {{#each answered}}
-        <div class="postedGidoCardDiv">
+        <div class="postedGidoCardDiv boxShadow0 answeredBorder">
             <div class="pgcdHeader">
                 <div class="userinfo">
                     <span style="float:right">{{momentDate}}년</span>
@@ -12,7 +12,7 @@
                         {{gidoPost}}
                     </div>
                 </div>
-                <div class="pgcdFooter" style="background:#ddd; color:#333333">
+                <div class="pgcdFooter">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-4 text-center">

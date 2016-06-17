@@ -1,61 +1,23 @@
 <template name="navbarBottom">
-    <div class="navbar navbar-default navbar-fixed-bottom footer-navbar">
-        <div class="container-fluid">
-            <div class="row" style="font-size:1.6em;">
-
-<!--
-                <div class="col-xs-2 text-center hvr-overline-reveal">
-                    <a href="{{pathFor 'myGidoPage'}}" class="fa fa-user" aria-hidden="true" style="color:orange"></a>
-                    <div style="font-size:0.5em; color:white">나의<br>기도</div>
-                </div>
-
-                <div class="col-xs-2 text-center hvr-overline-reveal">
-                    <a href="{{pathFor 'friendsGidoPage'}}" class="fa fa-users" aria-hidden="true" style="color:DeepSkyBlue"></a>
-                    <div style="font-size:0.5em; color:white">친구<br>기도</div>
-                </div>
-
-                <div class="col-xs-2 text-center hvr-overline-reveal">
-                    <a href="#" id="writeGido" class="fa fa-crosshairs" aria-hidden="true" style="color:red"></a>
-                    <div style="font-size:0.5em; color:white">퀵<br>기도</div>
-                </div>
-
-                <div class="col-xs-2 text-center hvr-overline-reveal">
-                    <a href="{{pathFor 'allGidoPage'}}" class="fa fa-globe" aria-hidden="true" style="color:Chartreuse "></a>
-                    <div style="font-size:0.5em; color:white">모든<br>기도</div>
-                </div>
-
-                <div class="col-xs-2 text-center hvr-overline-reveal">
-                    <a href="{{pathFor 'answeredGidoPage'}}" class="fa fa-cloud" aria-hidden="true" style="color:pink"></a>
-                    <div style="font-size:0.5em; color:white">응답<br>기도</div>
-                </div> -->
-<div class="text-center">
-    <div class="col-xs-1 text-center hvr-overline-reveal">
-    </div>
-    <div class="col-xs-2 text-center hvr-overline-reveal">
-        <a href="{{pathFor 'myGidoPage'}}"><img src="/img/icon01.png" alt="" /><div class="text-center menu" style="font-size:0.25em; color:white">&nbsp;나의기도</div></a>
-    </div>
-    <div class="col-xs-2 text-center hvr-overline-reveal">
-        <a href="{{pathFor 'friendsGidoPage'}}"><img src="/img/icon02.png" alt="" /><div class="text-center menu" style="font-size:0.25em; color:white">&nbsp;친구기도</div></a>
-    </div>
-    <div class="col-xs-2 text-center hvr-overline-reveal">
-        <a href="#" id="writeGido" ><img src="/img/icon03.png" alt="" /><div class="text-center menu" style="font-size:0.25em; color:white">&nbsp;기도쓰기</div></a>
-    </div>
-    <div class="col-xs-2 text-center hvr-overline-reveal">
-        <a href="{{pathFor 'allGidoPage'}}"><img src="/img/icon04.png" alt="" /><div class="text-center menu" style="font-size:0.25em; color:white">&nbsp;모두기도</div></a>
-    </div>
-    <div class="col-xs-2 text-center hvr-overline-reveal">
-        <a href="{{pathFor 'answeredGidoPage'}}"><img src="/img/icon05.png" alt="" /><div class="text-center menu" style="font-size:0.25em; color:white">&nbsp;응답기도</div></a>
-    </div>
-    <div class="col-xs-1 text-center hvr-overline-reveal">
-    </div>
-</div>
-
-
-
-
-
+    <nav class="navbar navbar-default navbar-fixed-bottom boxShadow1a">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" id="writeGido" style="color:#69a2b2;">누군가 기도쓰기</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{pathFor 'myGidoPage'}}">나의 기도 페이지</a></li>
+                    <li><a href="{{pathFor 'friendsGidoPage'}}">친구들의 기도들</a></li>
+                    <li><a href="{{pathFor 'allGidoPage'}}">모두의 기도들</a></li>
+                    <li><a href="{{pathFor 'answeredGidoPage'}}">응답받은 기도들</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-
+    </nav>
 </template>

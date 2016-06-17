@@ -4,6 +4,7 @@
     margin: 0 auto;
     border-radius: 5px;
     border: 10px white solid;
+    color:#333333
 }
 .postedGidoCardDiv a{
     text-decoration: none;
@@ -61,15 +62,11 @@
     float: right;
 }
 .aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{}
-
 .pgcdFooter{
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 0.9em;
-    background: #ddd;
-    border-radius: 5px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    background:#ddd;
 }
 .pgcdFooter .center{
     border-left: 1px solid #aaa;
@@ -81,4 +78,10 @@
 }
 .pgcdFooter .icons{
     padding-top: 20px;
+}
+.pgcdFooter .userbtn{
+    border: 0;
+    color:white;
+    margin-bottom: 5px;
+    background: #85c0d1;
 }

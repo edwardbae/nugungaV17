@@ -1,13 +1,15 @@
-.navbar{
+.navbar-brand{
+    color: #69a2b2;
+}
+
+
+/*.navbar{
     border: 0;
 }
-.navbar-brand{
-    font-size: 17px;
-}
+
 .aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{}
 .navbarTop{
     background: #333333;
-    /*background: #25675f;*/
     color: white;
 }
 .navbarTop .navbar-brand{
@@ -25,12 +27,10 @@
 .footer-navbar{
     height: 12%;
     background: #333333;
-    /*background: #25675f;*/
 }
 .footer-navbar a{
     text-decoration: none;
     padding-top: 17px;
-    /*font-size: 20px;*/
     color: white;
 }
 .footer-navbar .center{
@@ -50,4 +50,4 @@
     padding: 0;
     margin: 0;
     padding-top: 2px;
-}
+}*/

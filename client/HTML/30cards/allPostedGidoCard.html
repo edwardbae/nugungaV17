@@ -1,6 +1,6 @@
 <template name="allPostedGidoCard">
     {{#each allPosts}}
-        <div class="postedGidoCardDiv {{#if checked}}answeredBorder{{/if}}">
+        <div class="postedGidoCardDiv boxShadow0 {{#if checked}}answeredBorder{{/if}}">
             <div class="pgcdHeader">
                 <div class="userinfo">
                     <span class="floatRight">{{momentDate}}년</span>
@@ -12,7 +12,7 @@
                     {{gidoPost}}
                 </div>
             </div>
-            <div class="pgcdFooter" style="background:#ddd; color:#333333">
+            <div class="pgcdFooter">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-4 text-center">
@@ -32,8 +32,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
-                <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button> -->
             </div>
         </div>
         <br>
