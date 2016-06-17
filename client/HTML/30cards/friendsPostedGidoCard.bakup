@@ -1,10 +1,20 @@
-<template name="friendsPostedGidoCard">
-    {{#each friendsGido}}
-        <div class="postedGidoCardDiv">
+<template name="friendsPostedGidoCardbakup">
+    {{#each friendsGido currentUser._id}}
+        {{this}}
+        <!-- {{tempArray.gidoPost}} -->
+        <!-- {{#each friendsGido}} -->
+<!-- {{friendsGido}} -->
+        <!-- <div class="postedGidoCardDiv">
                 <div class="pgcdHeader">
-                    <div class="userinfo">
-                        <span style="float:right">{{momentDate}}년</span>
-                    </div>
+
+                    <nav class="navbar navbar-default navbar-static-top">
+                      <div class="container">
+                        <div class="navbar-header">
+                          <a class="navbar-brand">{{truncateTitle gidoTitle}}</a>
+                          <a class="navbar-brand" style="float:right">{{formattedDate}}</a>
+                        </div>
+                      </div>
+                    </nav>
                 </div>
                 <div class="pgcdBody">
                     <div class="postedPrayer">
@@ -33,6 +43,6 @@
                     </div>
                 </div>
             </div>
-            <br>
-        {{/each}}
+            <br> -->
+            {{/each}}
 </template>

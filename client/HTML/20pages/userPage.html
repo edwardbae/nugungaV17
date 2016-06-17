@@ -1,5 +1,5 @@
 <template name="user">
-    Requested Friend User Page
+    User Page
     {{#each requests}}
     <div class="myProfileCardDiv whiteDiv boxShadow1 container">
         <div class="row">
@@ -8,8 +8,9 @@
                     <img src="/img/profileAnonymM.png" alt="" />
                 </div>
                     <div class="friendBtnAccept text-center">
-                        <button id="friendRequestAcceptBtn" type="button" class="btn btn-success btn-xs">친구연결</button>
-                        <button id="friendRequestDeclineBtn" type="button" class="btn btn-danger btn-xs ">친구거절</button>
+                        {{friendshipStatus}}
+                            <button id="friendRequestAcceptBtn" type="button" class="btn btn-success btn-xs">친구연결</button>
+                            <button id="friendRequestDeclineBtn" type="button" class="btn btn-danger btn-xs ">친구거절</button>
                     </div>
             </div>
             <div class="col-xs-8 rightcolumn">

@@ -95,33 +95,32 @@ Template.user.helpers({
     requests: function(){
         return Meteor.users.find({_id:Session.get('friendRequestId')});
     },
+    friendshipStatus:function(){
+        console.log(Meteor.user.profile.friendRequestAccepted);
+    },
+    friendshipConnected:function(){
+        if (true) {
+            return 0
+        } else {
+            return 1
+        }
+    },
+
 });
 
 Template.friendsPostedGidoCard.helpers({
-    friendsGido: function(curUser){
-        var tempArray = [];
-        var tempArrayItem
-        if (Meteor.users.findOne(curUser)) {
-            aaa=Meteor.users.findOne(curUser).profile.friendlist;
-            for (var n = 0; n < aaa.length; n++) {
-                tempArrayItem=Posts.find({"userId":aaa[n].userId},{sort:{createdAt: -1 }});
-                tempArray.push(tempArrayItem)
-            };
+    friendsGido: function(){
+        if (Meteor.users.findOne(Meteor.userId())) {
+            return Posts.find(
+                 {$or:
+                    [{userId:
+                         {$in:
+                              Meteor.users.findOne(Meteor.userId()).profile.friendRequestAccepted
+                         }
+                    }]
+                }, {sort:{createdAt: -1 }}
+            ).fetch();
         }
-        console.log(tempArray);
-        return tempArray;
-
-        // Meteor.users.findOne(curUser);
-
-        // if (Meteor.users.findOne(Meteor.userId()).profile.friendlist) {
-        //     // aaa= Meteor.users.findOne(Meteor.userId()).profile.friendlist;
-        // }
-
-        // for (var n = 0; n < aaa.length; n++) {
-        //     console.log(aaa[n].userId);
-        //     return
-            // return Posts.find({"userId":aaa[n].userId},{sort:{createdAt: -1 }});
-        // }
     },
 });
 
