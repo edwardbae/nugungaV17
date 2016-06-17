@@ -8,5 +8,18 @@ body{
     padding: 5px;
 }
 a{
-    color: #25675f;
+    color: #303030;
+}
+.answeredBorder{
+    border: 10px #3B99FC solid;
+}
+
+.floatRight{
+    float: right;
+}
+.floatLeft{
+    float: left;
+}
+.floatClear{
+    clear: both;
 }

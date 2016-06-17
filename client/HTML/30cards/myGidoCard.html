@@ -1,64 +1,35 @@
 <template name="myGidoCard">
         <div class="myGidoCardDiv divPostMyPrayers whiteDiv">
             <form class="myGidoPost">
-
-                <!-- <div class="mgcdHeader">
-                    <input type="text" name="gidoTitle" placeholder="기도제목 - 20자 미만" >
-                    <a href="#" onclick="document.getElementById('fileID').click(); return false;">이미지 추가하기</a>
-                    <input type="file" id="fileID" style="visibility: hidden;" />
-                </div> -->
-
                 <div class="mgcdBody">
                     <div class="myGido">
                         <textarea rows="5" placeholder="기도내용" name="gidoPost"></textarea>
                     </div>
                 </div>
-
-                <div class="mgcdFooter container-fluid">
-                    <div class="row">
-                        <!-- <div class="col-xs-3 text-center">
-                            <select class="form-control" name="category">
-                                <option value=0>신앙</option>
-                                <option value=1>학업</option>
-                                <option value=2>건강</option>
-                                <option value=3>금전</option>
-                                <option value=4>가족</option>
-                                <option value=5>친구</option>
-                                <option value=6>세상</option>
-                            </select>
-                        </div> -->
-
-                        <div class="col-xs-3 text-center">
-                            <select class="form-control dropdownmenu" name="toWhom">
-                                <option value=0>모든성도</option>
-                                <option value=1>기도친구</option>
-                                <option value=2>나에게</option>
-                            </select>
-                        </div>
-
-                        <div class="col-xs-3 text-center">
-                            <select class="form-control dropdownmenu" name="anonymous">
-                                <option value=0>나의이름으로</option>
-                                <option value=1>익명으로</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="text-center">
-                                <button type="submit" class="btn postGidoBtn">보내기</button>
+                <div class="mgcdFooter">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-4 ">
+                                <select class="form-control dropdownmenu text-center" name="toWhom">
+                                    <option value=0>모든성도</option>
+                                    <option value=1>기도친구</option>
+                                    <option value=2>나에게</option>
+                                </select>
+                            </div>
+                            <div class="center col-xs-4 text-center">
+                                <select class="form-control dropdownmenu" name="anonymous">
+                                    <option value=0>나의이름으로</option>
+                                    <option value=1>익명으로</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <div class="text-center">
+                                    <button type="submit" class="btn postGidoBtn">보내기</button>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- <div class="col-xs-3 text-center">
-                            <select class="form-control" name="subject">
-                                <option value=0>기도부탁</option>
-                                <option value=1>간증</option>
-                                <option value=2>말씀</option>
-                            </select>
-                        </div> -->
                     </div>
-
                 </div>
-
             </form>
         </div>
 </template>

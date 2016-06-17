@@ -1,9 +1,34 @@
+Template.navbarBottom.events({
+    "click #writeGido": function(event){
+        swal({
+            title: "기도쓰기",
+            text: "모든성도에게 보내는 기도 제목",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-bottom",
+            inputPlaceholder: "기도제목" },
+
+            function(inputValue){
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("포스팅 기도내용이 없습니다!");
+                    return false   };
+                Posts.insert({
+                    gidoPost:inputValue,
+                    createdAt: new Date(),
+                    toWhom: "0",
+                    anonymous: "0",
+                    userId: Meteor.userId(),
+                    username: Meteor.user().username
+                });
+                swal("아멘!", "성도님의 기도가 포스팅되었습니다");
+            });
+    },
+});
+
 Template.myGidoCard.events({
-    //insert post
     "submit .myGidoPost": function(event){
-        // var gidoTitle = event.target.gidoTitle.value;
-        // var category = event.target.category.value;
-        // var subject = event.target.subject.value;
         var gidoPost = event.target.gidoPost.value;
         var toWhom = event.target.toWhom.value;
         var anonymous = event.target.anonymous.value;
@@ -11,9 +36,6 @@ Template.myGidoCard.events({
             sweetAlert("주여..", "보낼 기도내용이 없습니다!", "error");
         } else {
             Posts.insert({
-                // gidoTitle:gidoTitle,
-                // category: category,
-                // subject: subject,
                 gidoPost:gidoPost,
                 createdAt: new Date(),
                 toWhom: toWhom,
@@ -21,7 +43,6 @@ Template.myGidoCard.events({
                 userId: Meteor.userId(),
                 username: Meteor.user().username
             });
-            // event.target.gidoTitle.value = "";
             event.target.gidoPost.value = "";
             sweetAlert("아멘..", "성도님의 기도내용을 포스팅 했습니다!", "success");
         }
@@ -36,14 +57,30 @@ Template.allGidoPage.events({
 });
 
 Template.postedGidoCard.events({
-    //delete Post
+    // "click #delete-post": function(){
+    //     if (confirm("이 기도를 지우시겠습니까?")) {
+    //         Posts.remove(this._id);
+    //     }
+    // },
+
     "click #delete-post": function(){
-        if (confirm("이 기도를 지우시겠습니까?")) {
-            Posts.remove(this._id);
-        }
+        var self = this;
+        swal({
+            title: "이 기도를 지우시겠습니까?",
+            text: "지우시면 다시 복귀를 하실수 없습니다.!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "기도 삭제",
+            closeOnConfirm: false },
+
+            function(){
+                Posts.remove({_id:self._id});
+                swal("삭제!", "기도를 삭제하였습니다.", "success");
+            });
     },
 
-    //check answered prayer
+
     "click .prayerAnswerToggle": function(){
         Posts.update(this._id, {
             $set:{checked: ! this.checked}
@@ -172,8 +209,4 @@ Template.user.events({
             status:3,
         });
     },
-    // "click #friendRequestDeclineBtn": function(event){
-    //     FriendshipCollection.update({_id:Session.get('friendRequestId')}, {
-    //         $set:{status:3}});
-    // },
 });

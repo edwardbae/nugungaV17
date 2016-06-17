@@ -1,9 +1,9 @@
 <template name="allPostedGidoCard">
     {{#each allPosts}}
-        <div class="postedGidoCardDiv">
+        <div class="postedGidoCardDiv {{#if checked}}answeredBorder{{/if}}">
             <div class="pgcdHeader">
                 <div class="userinfo">
-                    <span style="float:right">{{momentDate}}년</span>
+                    <span class="floatRight">{{momentDate}}년</span>
                 </div>
             </div>
 
@@ -25,10 +25,10 @@
                             </div>
                         </div>
                         <div class="center col-xs-4 text-center">
-                            <i class="fa fa-clock-o" aria-hidden="true" style="font-size:1.2em; padding-top:7px;"></i><br> 시간
+                            <i class="icons fa fa-clock-o" aria-hidden="true"></i><br> 시간
                         </div>
                         <div class="col-xs-4 text-center">
-                            <a href="{{pathFor 'post'}}" class="fa fa-comments" aria-hidden="true" style="font-size:1.2em; padding-top:7px;"></a><br> 댓글 ({{checkComment _id}})
+                            <a href="{{pathFor 'post'}}" class="icons fa fa-comments" aria-hidden="true"></a><br> 댓글 ({{checkComment _id}})
                         </div>
                     </div>
                 </div>

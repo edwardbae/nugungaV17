@@ -2,22 +2,58 @@
     <div class="navbar navbar-default navbar-fixed-bottom footer-navbar">
         <div class="container-fluid">
             <div class="row" style="font-size:1.6em;">
-                <div class="col-xs-3 text-center hvr-overline-reveal">
-                    <a href="{{pathFor 'myGidoPage'}}" class="fa fa-home" aria-hidden="true" style="color:orange"></a>
-                    <div style="font-size:0.5em; color:white">나의기도</div>
+
+<!--
+                <div class="col-xs-2 text-center hvr-overline-reveal">
+                    <a href="{{pathFor 'myGidoPage'}}" class="fa fa-user" aria-hidden="true" style="color:orange"></a>
+                    <div style="font-size:0.5em; color:white">나의<br>기도</div>
                 </div>
-                <div class="col-xs-3 text-center hvr-overline-reveal">
+
+                <div class="col-xs-2 text-center hvr-overline-reveal">
                     <a href="{{pathFor 'friendsGidoPage'}}" class="fa fa-users" aria-hidden="true" style="color:DeepSkyBlue"></a>
-                    <div style="font-size:0.5em; color:white">친구기도</div>
+                    <div style="font-size:0.5em; color:white">친구<br>기도</div>
                 </div>
-                <div class="col-xs-3 text-center hvr-overline-reveal">
+
+                <div class="col-xs-2 text-center hvr-overline-reveal">
+                    <a href="#" id="writeGido" class="fa fa-crosshairs" aria-hidden="true" style="color:red"></a>
+                    <div style="font-size:0.5em; color:white">퀵<br>기도</div>
+                </div>
+
+                <div class="col-xs-2 text-center hvr-overline-reveal">
                     <a href="{{pathFor 'allGidoPage'}}" class="fa fa-globe" aria-hidden="true" style="color:Chartreuse "></a>
-                    <div style="font-size:0.5em; color:white">모든기도</div>
+                    <div style="font-size:0.5em; color:white">모든<br>기도</div>
                 </div>
-                <div class="col-xs-3 text-center hvr-overline-reveal">
+
+                <div class="col-xs-2 text-center hvr-overline-reveal">
                     <a href="{{pathFor 'answeredGidoPage'}}" class="fa fa-cloud" aria-hidden="true" style="color:pink"></a>
-                    <div style="font-size:0.5em; color:white">응답기도</div>
-                </div>
+                    <div style="font-size:0.5em; color:white">응답<br>기도</div>
+                </div> -->
+<div class="text-center">
+    <div class="col-xs-1 text-center hvr-overline-reveal">
+    </div>
+    <div class="col-xs-2 text-center hvr-overline-reveal">
+        <a href="{{pathFor 'myGidoPage'}}"><img src="/img/icon01.png" alt="" /><div class="text-center menu" style="font-size:0.4em; color:white">나의기도</div></a>
+    </div>
+    <div class="col-xs-2 text-center hvr-overline-reveal">
+        <a href="{{pathFor 'friendsGidoPage'}}"><img src="/img/icon02.png" alt="" /><div class="text-center menu" style="font-size:0.4em; color:white">친구기도</div></a>
+    </div>
+    <div class="col-xs-2 text-center hvr-overline-reveal">
+        <a href="#" id="writeGido" ><img src="/img/icon03.png" alt="" /><div class="text-center menu" style="font-size:0.4em; color:white">기도쓰기</div></a>
+    </div>
+    <div class="col-xs-2 text-center hvr-overline-reveal">
+        <a href="{{pathFor 'allGidoPage'}}"><img src="/img/icon04.png" alt="" /><div class="text-center menu" style="font-size:0.4em; color:white">모두기도</div></a>
+    </div>
+    <div class="col-xs-2 text-center hvr-overline-reveal">
+        <a href="{{pathFor 'answeredGidoPage'}}"><img src="/img/icon05.png" alt="" /><div class="text-center menu" style="font-size:0.4em; color:white">응답기도</div></a>
+    </div>
+    <div class="col-xs-1 text-center hvr-overline-reveal">
+    </div>
+</div>
+
+
+
+
+
             </div>
         </div>
     </div>
