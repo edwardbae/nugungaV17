@@ -18,11 +18,63 @@
                         <span class="{{#if checked}}checked{{/if}}"><label><input class="prayerAnswerToggle myCheckbox" type="checkbox" checked={{checked}}><br>응답 </label></span>
                     </div>
                     <div class="center col-xs-4 text-center">
-                        <i class="icons fa fa-clock-o" aria-hidden="true"> <br>시간</i>
-                    </div>
-                    <div class="col-xs-4 text-center">
                         <a href="{{pathFor 'post'}}" class="icons fa fa-comments" aria-hidden="true"> <br>댓글({{checkComment _id}})</a>
                     </div>
+                    <div class="col-xs-4 text-center">
+                        <button type="button" class="userbtn btn btn-xs" data-toggle="modal" data-target="#myModal{{_id}}">
+                          {{username}}
+                        </button>
+                    </div>
+                    <!-- modal -->
+                    <div class="modal fade" id="myModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
+                            <a>{{momentDate}}년</a>
+                                <a><span style="float:right">{{checkToWhom toWhom}}</span></a>
+                          </div>
+                          <div class="modal-body">
+                            {{gidoPost}}
+                          </div>
+                          <div class="postedPrayerReplies">
+                              <ul>
+                                  {{#each comments}}
+                                      <li>
+                                          <div class="commentPost">
+                                              {{#if $eq currentUser.username username}}
+                                                  <div class="" style="background:#eff7f5">
+                                                      <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{formattedDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
+                                                      <span id="commentIdPass-mpgcd" style="display:none;">{{commentId}}</span>
+                                                      <button id="delete-comment-mpgcd" type="button" class="btn btn-link floatRight fa fa-trash" aria-hidden="true"></button>
+                                                  </div>
+                                              {{else}}
+                                                  <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{formattedDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
+                                              {{/if}}
+                                          </div>
+                                      </li>
+                                  {{/each}}
+                              </ul>
+                                  <form class="pgcdComment">
+                                        <input type="text" name="replyText" placeholder="댓글을 입력">
+                                        <button type="submit" class="btn btn-link floatLeft fa fa-paper-plane" aria-hidden="true"></button>
+                                        <br>
+                                        <small style="color: #e99bb1; padding-top:5px;">댓글은 익명으로 쓸수 없습니다</small>
+                                  </form>
+                          </div> <!-- postedPrayerReplies end-->
+
+                        <div class="modal-footer">
+                            {{#if $eq currentUser.username username}}
+                            <button type="button" id="delete-post" class="btn btn-danger floatLeft fa fa-trash-o" aria-hidden="true"> 삭제</button>
+                            {{/if}}
+                            <button type="button" class="btn btn-default fa" aria-hidden="true" data-dismiss="modal">&times; 닫기</button>
+                        </div> <!-- modal-footer end-->
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- modal end-->
                 </div>
             </div>
             <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>

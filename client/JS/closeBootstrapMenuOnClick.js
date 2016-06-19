@@ -10,7 +10,11 @@ $(document).on('click','.navbar-collapse.in',function(e) {
         $(this).collapse('hide');
     }
 });
+
+
+
 //add active class to highlight
+// must comeback and fix this
 // $(function(){
 //     var tempVar = Session.get('pageTitle')
 //     if (tempVar==='나의 기도') {
@@ -18,7 +22,7 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 //     }
 // });
 
-$(function () {
-    $("#navbar a:contains('aaa')").parent().addClass('active');
-    $("#navbar a:contains('친구들의 기도들')").parent().addClass('active');
- });
+// $(function () {
+//     $("#navbar a:contains('aaa')").parent().addClass('active');
+//     $("#navbar a:contains('친구들의 기도들')").parent().addClass('active');
+//  });

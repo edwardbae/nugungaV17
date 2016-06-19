@@ -1,33 +1,5 @@
 <template name="post">
     <div class="postedGidoCardDiv boxShadow0 biggerfont">
-        <!-- <div class="pgcdHeader">
-            <nav class="navbar navbar-default navbar-static-top">
-              <div class="container">
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbaraaa{{_id}}" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                  </button>
-                  <a class="navbar-brand" href="#">{{truncateTitle gidoTitle}}</a>
-                </div>
-                <div id="navbaraaa{{_id}}" class="navbar-collapse collapse">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">기도 작성일: {{momentDate}}</a></li>
-                    {{#if $eq currentUser.username username}}
-                        <li><a href="#" id="delete-post" style="color:#e99bb1;">기도지우기</a></li>
-                    {{else}}
-                        {{#if checkAnonymousLink anonymous}}
-                            <li><a href="#">익명의 기도</a></li>
-                        {{else}}
-                            <li><a href="#">기도 작성자: {{username}}</a></li>
-                        {{/if}}
-                    {{/if}}
-                  </ul>
-                </div>
-              </div>
-            </nav>
-        </div> -->
-
         <div class="pgcdHeader">
             <a>{{momentDate}}년</a>
             {{#if $eq currentUser.username username}}

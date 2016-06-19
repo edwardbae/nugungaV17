@@ -3,10 +3,13 @@
 // //     return imgUrl;
 // // });
 //
-// Template.registerHelper('formattedDate', function(){
-//     return moment(this.createdAt).fromNow();
-// });
-//
+Template.registerHelper('sendAndStore', function(tempId){
+    console.log(tempId);
+});
+Template.registerHelper('formattedDate', function(){
+    return moment(this.createdAt).fromNow();
+});
+
 Template.registerHelper('momentDate', function(){
     return moment(this.createdAt).format('MMMM Do YYYY');
 });
