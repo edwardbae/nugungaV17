@@ -20,6 +20,13 @@ a{
 .floatLeft{
     float: left;
 }
+.floatCenter {
+  float: right;
+
+  position: relative;
+  left: -50%; /* or right 50% */
+  text-align: left;
+}
 .floatClear{
     clear: both;
 }

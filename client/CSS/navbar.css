@@ -1,7 +1,20 @@
 .navbar-brand{
+    padding-top: 20px;
     color: #69a2b2;
 }
 
+.navbar-fixed-top{
+    margin: 0;
+}
+.navbar-fixed-top .statusbar{
+    background: #5F5F5F;
+    border-radius: 0;
+    border: 0;
+    height: 18px;
+}
+.navbar-fixed-top button{
+    border: 0;
+}
 
 /*.navbar{
     border: 0;

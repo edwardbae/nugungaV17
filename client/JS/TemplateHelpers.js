@@ -129,3 +129,24 @@ Template.friendsNameCard.helpers({
     return Meteor.users.findOne(Meteor.userId()).profile.friendlist;
   },
 });
+
+Template.navbarBottom.helpers({
+    makeactive: function(){
+        var axxxx = Session.get('pageTitle');
+        if (axxxx==="나의 기도") {
+            $("#myGido").addClass('active');
+            $("#friendGido").removeClass('active');
+            $("#allGido").removeClass('active');
+        }
+        if (axxxx==="친구의 기도") {
+            $("#myGido").removeClass('active');
+            $("#friendGido").addClass('active');
+            $("#allGido").removeClass('active');
+        }
+        if (axxxx==="모두의 기도") {
+            $("#myGido").removeClass('active');
+            $("#friendGido").removeClass('active');
+            $("#allGido").addClass('active');        
+        }
+    }
+});

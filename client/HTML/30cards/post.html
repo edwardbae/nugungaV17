@@ -17,14 +17,16 @@
                     {{#each comments}}
                         <li>
                             <div class="commentPost">
+                            <!-- xxx this is wrong...  i should use currentUser._id....  fix this in the future xxx -->
                             {{#if $eq currentUser.username username}}
+                            <!-- xxx this is wrong...  i should use currentUser._id....  fix this in the future xxx -->
                                 <div class="" style="background:#eff7f5">
-                                    <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{formattedDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
+                                    <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{momentDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
                                     <button id="delete-comment">X</button>
-                                    <span id="commentIdPass" style="display:none;">{{commentId}}</span>
+                                    <span id="commentIdPass" style="display:block;">{{commentId}}</span>
                                 </div>
                             {{else}}
-                                <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{formattedDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
+                                <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{momentDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
                             {{/if}}
                             </div>
                         </li>
