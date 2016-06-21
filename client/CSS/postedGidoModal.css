@@ -1,0 +1,47 @@
+.postedGidoModalDiv .modal-body{
+
+
+}
+.postedGidoModalDiv .modal-header .date{
+    padding-top: 50px;
+    color: #9D9D9D;
+}
+
+.postedGidoModalDiv .makePublic {
+    font-size: 0.9em;
+    color: #9D9D9D;
+}
+
+.postedGidoModalDiv .modalbody-post{
+    font-size: 0.9em;
+}
+.postedGidoModalDiv .modalbody-comment{
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em;
+}
+.postedGidoModalDiv .modalbody-comment ul{
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.postedGidoModalDiv .modalbody-comment li{
+    list-style: none;
+    margin-bottom: 5px;
+}
+.postedGidoModalDiv .modalbody-comment .commentPostFootnotes{
+    color: #9D9D9D;
+}
+.postedGidoModalDiv .modalbody-comment #delete-comment{
+}
+.pgcdComment input{
+}
+.postedPrayerReplies .selfComment{
+}
+.emptyBlock{
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}

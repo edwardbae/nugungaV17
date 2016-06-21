@@ -35,6 +35,27 @@ Template.postedGidoCard.events({
             $set:{checked: ! this.checked}
         });
     },
+    "click .makePublicToggle": function(){1111111
+
+        Posts.update(this._id, {
+            $set:{madePublic: ! this.madePublic}
+        });
+    },
+    // "click #delete-comment-mpgcd": function(event, template){
+    //     var tempCommentId = $(event.target).parent().find('#commentIdPass-mpgcd').text();
+    //     var tempPost = Posts.find({comments:{$elemMatch:{commentId:tempCommentId}}}).fetch();
+    //     var tempPostId=tempPost[0]._id;
+    //     Posts.update(
+    //         {_id:tempPostId},
+    //         {$pull:{
+    //             comments: {
+    //                 commentId: tempCommentId
+    //             }}
+    //         });
+    // },
+});
+
+Template.postedGidoModal.events({
     "submit .pgcdComment": function(event){
         var text = event.target.replyText.value;
         var commentId = new Meteor.Collection.ObjectID();   //variable to insert a uniqueId to the comment.  makes it easier to delete the comment
@@ -53,10 +74,12 @@ Template.postedGidoCard.events({
         event.target.replyText.value = "";
         return false;
     },
-    "click #delete-comment-mpgcd": function(event, template){
+    "click #delete-comment-Modal": function(event, template){
         var tempCommentId = $(event.target).parent().find('#commentIdPass-mpgcd').text();
         var tempPost = Posts.find({comments:{$elemMatch:{commentId:tempCommentId}}}).fetch();
         var tempPostId=tempPost[0]._id;
+        console.log(tempCommentId);
+        console.log(tempPostId);
         Posts.update(
             {_id:tempPostId},
             {$pull:{
@@ -65,7 +88,29 @@ Template.postedGidoCard.events({
                 }}
             });
     },
+    "click .prayerAnswerToggle": function(){
+        Posts.update(this._id, {
+            $set:{prayerAnswered: ! this.checked}
+        });
+    },
+    "click .makePublicToggle": function(){
+        console.log(111);
+        Posts.update(this._id, {
+            $set:{madePublic: ! this.aaa}
+        });
+    },
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // Template.postedGidoCard.events({
 //     "submit .pgcdComment": function(event){

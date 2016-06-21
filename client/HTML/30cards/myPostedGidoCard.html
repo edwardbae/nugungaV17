@@ -2,83 +2,18 @@
     {{#each postsByMe}}
     <div class="postedGidoCardDiv boxShadow0 {{#if checked}}answeredBorder{{/if}}">
         <div class="pgcdHeader">
-            <span class="floatRight">{{momentDate}}년</span>
-            <a href="#" id="delete-post" class="fa fa-trash floatLeft" aria-hidden="true"></a>
+            <span class="makePublic floatLeft {{#if madePublic}}checked{{/if}}"><label><input class="makePublicToggle myCheckbox" type="checkbox" checked={{madePublic}}> 기도 공유</label></span>
+            <span class="dateandtime floatRight">{{momentYear}}년 {{momentDate}} &middot; {{momentTime}}</span>
         </div>
-        <div class="pgcdBody floatClear">
-            <div class="postedPrayer">
-                {{gidoPost}}
-            </div>
-        </div>
-        <div class="pgcdFooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-4 text-center">
-                        <span class="{{#if checked}}checked{{/if}}"><label><input class="prayerAnswerToggle myCheckbox" type="checkbox" checked={{checked}}><br>응답 </label></span>
-                    </div>
-                    <div class="center col-xs-4 text-center">
-                        <a href="{{pathFor 'post'}}" class="icons fa fa-comments" aria-hidden="true"> <br>기도하기</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                        <button type="button" class="userbtn btn btn-xs" data-toggle="modal" data-target="#myModal{{_id}}">
-                         댓글({{checkComment _id}})
-                        </button>
-                    </div>
-                    <!-- modal -->
-                    <div class="modal fade" id="myModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
-                            <a>{{momentDate}}년</a>
-                          </div>
-                          <div class="modal-body">
-                            {{gidoPost}}
-                          </div>
-                          <div class="postedPrayerReplies">
-                              <ul>
-                                  {{#each comments}}
-                                      <li>
-                                          <div class="commentPost">
-                                              {{#if $eq currentUser.username username}}
-                                                  <div class="selfComment">
-                                                      <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{momentDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
-                                                      <span id="commentIdPass-mpgcd" style="display:none;">{{commentId}}</span>
-                                                      <button id="delete-comment-mpgcd" type="button" class="btn btn-link floatRight fa fa-trash" aria-hidden="true"></button>
-                                                  </div>
-                                              {{else}}
-                                                  <small><strong>{{username}}</strong> &middot; <span class="textcolor70">{{momentDate}}</span> </small><br><span id="targetReplyPost">{{replyPost}}</span>
-                                              {{/if}}
-                                          </div>
-                                      </li>
-                                  {{/each}}
-                              </ul>
-                                  <form class="pgcdComment">
-                                        <input type="text" name="replyText" placeholder="댓글">
-                                        <button type="submit" class="btn btn-link floatLeft fa fa-paper-plane" aria-hidden="true"></button>
-                                        <br>
-                                        <small style="color: #e99bb1; padding-top:5px;">댓글은 익명으로 쓸수 없습니다</small>
-                                  </form>
-                          </div> <!-- postedPrayerReplies end-->
-
-                        <div class="modal-footer">
-                            {{#if $eq currentUser.username username}}
-                            <button type="button" id="delete-post" class="btn btn-danger floatRight fa fa-trash-o" aria-hidden="true"> 삭제</button>
-                            {{/if}}
-                            <button type="button" class="btn btn-default fa floatLeft" aria-hidden="true" data-dismiss="modal">닫기</button>
-                        </div> <!-- modal-footer end-->
-
-                        </div>
-                      </div>
-                    </div>
-                    <!-- modal end-->
+        <a href="#" data-toggle="modal" data-target="#myModal{{_id}}">
+            <div class="pgcdBody floatClear">
+                <div class="postedPrayer">
+                    {{gidoPost}}
+                    <small class="comment floatRight"> - 댓글({{checkComment _id}}) </small>
                 </div>
             </div>
-            <!-- <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="prayerBtn">기도하기</button>
-            <button class="btn btn-lg prayerBtn hvr-overline-from-center" id="saveTime">시간보내기</button> -->
-        </div>
+        </a>
     </div>
-    <br>
+    {{> postedGidoModal}}
     {{/each}}
 </template>

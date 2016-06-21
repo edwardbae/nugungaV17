@@ -1,0 +1,20 @@
+.friendsListCard{
+    padding: 0;
+    margin: 0;
+}
+.friendsListCard img{
+    border-radius: 2px;
+    width: 100%;
+    margin: 4px;
+}
+
+
+.friendsListCard .friendName{
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.friendsListCard .friendTime{
+    color: #cccccc;
+}

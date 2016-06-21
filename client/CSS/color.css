@@ -1,33 +1,20 @@
-
-.magenta{
-    color: #ED4975;
+.dateTimeMiscText{
+    color: #cccccc;    /* grey 20 */
 }
-.magentaDark{
-    color: #b21e45;
+.midgrey{
+    color: #808080;    /* grey 50 */
 }
-/*mainBG*/
-.textcolor10{
-    color: #101010;
+.anthrazit{
+    color: #4d4d4d;    /* grey 70 */
 }
-/*navbar color*/
-.textcolor20{
-    color: #333333;
-}
-.textcolor30{
-    color: #4d4d4d;
-}
-.textcolor50{
-    color: #808080;
+.iconColor{
+    color:#69a2b2;    /*light teal*/
 }
 
-/*horizontal lines*/
-.textcolor70{
-    color: #b3b3b3;
-}
 
-.textcolor90{
-    color: #e6e6e6;
-}
+
+
+
 
 
 .boxShadow0{

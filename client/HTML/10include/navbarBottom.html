@@ -1,49 +1,42 @@
 <template name="navbarBottom">
     <nav class="navbar navbar-default navbar-fixed-bottom boxShadow1a">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed floatLeft" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="margin-left:10px; margin-top:10px; border:0">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- <button type="button" id="writeGido" class="floatRight" style="margin:0; padding:0; margin-right:20px; border:0; font-size:2em">+</button> -->
-
-                <!-- Button trigger modal -->
-                <button type="button" class="floatRight" data-toggle="modal" data-target="#myGidoModal" style="margin:0; padding:0; margin-right:20px; border:0; font-size:2em"> + </button>
-            </div>    <!-- end navbar-header-->
-
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    {{makeactive}}
-                    <li id="myGido"><a href="{{pathFor 'myGidoPage'}}" class="fa fa-user" aria-hidden="true" style="color:#69a2b2"> 나의 기도</a></li>
-                    <li id="friendGido"><a href="{{pathFor 'friendsGidoPage'}}" class="fa fa-users" aria-hidden="true" style="color:#69a2b2"> 친구의 기도</a></li>
-                    <li id="allGido"><a href="{{pathFor 'allGidoPage'}}" class="fa fa-globe" aria-hidden="true" style="color:#69a2b2"> 모두의 기도</a></li>
-                </ul>
+        <div id="navbar" class="container">
+            <div class="row">    {{makeactive}}
+                <div class="navMenu col-xs-3 text-center">
+                    <a href="{{pathFor 'myGidoPage'}}" id="myGido" class="glyphicon glyphicon-user" aria-hidden="true"></a>
+                </div>
+                <div class="navMenu col-xs-3 text-center">
+                    <a href="{{pathFor 'friendsGidoPage'}}" id="friendGido" class="fa fa-comment" aria-hidden="true"></a>
+                </div>
+                <div class="navMenu col-xs-3 text-center">
+                    <a href="{{pathFor 'allGidoPage'}}" id="allGido" class="fa fa-globe" aria-hidden="true"></a>
+                </div>
+                <div class="navMenu col-xs-3 text-center">
+                    <a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myGidoModal"></a>
+                </div>
             </div>
         </div>
     </nav>
+
     <!-- Modal -->      <!-- has to sit outside /nav to render correctly -->
     <div class="modal fade" id="myGidoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">기도 쓰기</h4>
+            <h4 class="modal-title" id="myModalLabel">my gido</h4>
           </div>
           {{#autoForm collection="Posts" id="insertPostForm" type="insert"}}
               <div class="modal-body">
-                    {{> afQuickField name="gidoPost" rows=4}}
-                    {{> afQuickField name="anonymous"}}
-                    <small>*익명으로 표기된 기도는 개인정보가 <br> 노출되지 않습니다</small>
+                    {{> afQuickField name="gidoPost" rows=6 placeholder="오늘의 기도를 적어주세요"}}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default floatLeft" data-dismiss="modal">닫기</button>
-                <button id="navbarGidoPost" type="submit" class="btn btn-primary floatRight">기도 포스팅 하기</button>
+                <button id="navbarGidoPost" type="submit" class="btn btn-primary floatLeft">Save</button>
+                <button type="button" class="btn btn-default floatRight" data-dismiss="modal"><span style="color:#808080">Close</span></button>
               </div>
           {{/autoForm}}
         </div>
       </div>
     </div> <!-- end Modal -->
+
 </template>

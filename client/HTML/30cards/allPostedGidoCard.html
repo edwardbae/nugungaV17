@@ -1,39 +1,19 @@
 <template name="allPostedGidoCard">
     {{#each allPosts}}
-        <div class="postedGidoCardDiv boxShadow0 {{#if checked}}answeredBorder{{/if}}">
-            <div class="pgcdHeader">
-                <div class="userinfo">
-                    <span class="floatRight">{{momentDate}}년</span>
-                </div>
-            </div>
-
-            <div class="pgcdBody">
+    <div class="postedGidoCardDiv boxShadow0 {{#if checked}}answeredBorder{{/if}}">
+        <div class="pgcdHeader">
+            <span class="username floatLeft"> {{username}}</span>
+            <span class="dateandtime floatRight">{{momentYear}}년 {{momentDate}} &middot; {{momentTime}}</span>
+        </div>
+        <a href="#" data-toggle="modal" data-target="#myModal{{_id}}">
+            <div class="pgcdBody floatClear">
                 <div class="postedPrayer">
                     {{gidoPost}}
+                    <small class="comment floatRight"> - 댓글({{checkComment _id}}) </small>
                 </div>
             </div>
-            <div class="pgcdFooter">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-4 text-center">
-                            <div class="userinfo">
-                                    {{#if checkAnonymousLink anonymous}}
-                                        <img src="img/profileAnonymM.png" alt="" style="width:26px; height:26px;"/> <br>익명
-                                    {{else}}
-                                        <img src="img/profileAnonymM.png" alt="" style="width:26px; height:26px;"/> <a id="sendToPosterPage" href="{{pathFor 'poster'}}"><br>{{username}}</a>
-                                    {{/if}}
-                            </div>
-                        </div>
-                        <div class="center col-xs-4 text-center">
-                            <i class="icons fa fa-clock-o" aria-hidden="true"></i><br> 시간
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <a href="{{pathFor 'post'}}" class="icons fa fa-comments" aria-hidden="true"></a><br> 댓글 ({{checkComment _id}})
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
+        </a>
+    </div>
+    {{> postedGidoModal}}
     {{/each}}
 </template>

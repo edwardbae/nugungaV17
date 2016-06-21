@@ -16,7 +16,7 @@ Template.postedGidoCard.helpers({
 Template.allPostedGidoCard.helpers({
     allPosts: function(){
         lastUpdated = Session.get('updated');
-        return Posts.find({toWhom:"0", createdAt: { $lt: lastUpdated }},{sort:{createdAt: -1 }});
+        return Posts.find({madePublic:true, createdAt: { $lt: lastUpdated }},{sort:{createdAt: -1 }});
     },
 });
 
@@ -108,7 +108,7 @@ Template.user.helpers({
 
 });
 
-Template.friendsPostedGidoCard.helpers({
+Template.friendsListCard.helpers({
     friendsGido: function(){
         if (Meteor.users.findOne(Meteor.userId())) {
             return Posts.find(
@@ -146,7 +146,7 @@ Template.navbarBottom.helpers({
         if (axxxx==="모두의 기도") {
             $("#myGido").removeClass('active');
             $("#friendGido").removeClass('active');
-            $("#allGido").addClass('active');        
+            $("#allGido").addClass('active');
         }
     }
 });

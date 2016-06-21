@@ -1,45 +1,31 @@
-// // Template.registerHelper('getProfileImg', function(userId){
-// //     var imgUrl=UserImages.findOne({userId: userId}).image;
-// //     return imgUrl;
-// // });
-//
 Template.registerHelper('sendAndStore', function(tempId){
     console.log(tempId);
 });
 Template.registerHelper('formattedDate', function(){
     return moment(this.createdAt).fromNow();
 });
-
-Template.registerHelper('momentDate', function(){
-    return moment(this.createdAt).format('MMMM Do YYYY');
+Template.registerHelper('renderSession', function(){
+        lastUpdated = Session.get('pageTitle');
+        return lastUpdated;
 });
-//
-// Template.registerHelper('truncateTitle', function(text, length){
-//     if (text.length>20) {
-//         var newText = text.substring(20, length) + "  ...";
-//         return new Spacebars.SafeString(newText);
-//     } else {
-//         return text;
-//     }
-// });
-//
-// Template.registerHelper('truncateText', function(text, length){
-//     if (text.length>200) {
-//         var newText = text.substring(200, length) + "  .... [클릭하여 더보기]";
-//         return new Spacebars.SafeString(newText);
-//     } else {
-//         return text;
-//     }
-// });
+Template.registerHelper('momentTime', function(){
+    return moment(this.createdAt).format('a h:mm');
+});
+Template.registerHelper('momentDate', function(){
+    return moment(this.createdAt).format('MMM Do');
+});
+Template.registerHelper('momentYear', function(){
+    return moment(this.createdAt).format('YYYY');
+});
+
 
 Template.registerHelper('checkAnonymous', function(anonymous, username, userId){
-    if (anonymous === "0") {
+    if (anonymous === false) {
         return username;
     } else {
-        return "익명의 기도";
+        return "nugunga";
     }
 });
-
 Template.registerHelper('checkAnonymousLink', function(anonymous){
     if (anonymous === "0") {
         return 0;
@@ -47,12 +33,10 @@ Template.registerHelper('checkAnonymousLink', function(anonymous){
         return 1;
     }
 });
-
 Template.registerHelper('findUsername', function(tempUserId){
     var tempObj = Meteor.users.findOne({"_id":tempUserId}).username;
     return tempObj;
 });
-
 Template.registerHelper('checkToWhom', function(toWhom){
     if (toWhom === "0") {
         return "모든성도"
@@ -62,7 +46,6 @@ Template.registerHelper('checkToWhom', function(toWhom){
         return "나에게만"
     }
 });
-
 Template.registerHelper('checkComment', function(commentId){
     tempObj = Posts.findOne({"_id":commentId});
     if (!tempObj.comments) {
@@ -71,7 +54,6 @@ Template.registerHelper('checkComment', function(commentId){
         return tempObj.comments.length;
     }
 });
-
 Template.registerHelper('updateFriendshipStatus', function(){
     if (FriendshipCollection.findOne({"status":1, "receivedUser":Meteor.userId()})) {
         var tempRequest = FriendshipCollection.findOne({"status":1, "receivedUser":Meteor.userId()})
@@ -124,67 +106,56 @@ Template.registerHelper('updateFriendshipStatus', function(){
             FlashMessages.sendInfo(tempRequest.initiatedUsername+"님과 친구 거절 되었습니다."+"<br><a href='/friendRequestPage'> -친구관리로 이동-</a>", { autoHide: false });
             FriendshipCollection.remove({_id:tempRequest._id});
         }
-
-
-
     }
+    // var tempFriendshipRequest1 = FriendshipCollection.findOne({"status":1});
+    // // var tempFriendshipRequest2 = FriendshipCollection.findOne({"status":2});
+    // // var tempFriendshipRequest3 = FriendshipCollection.findOne({"status":3});
+    //
+    // console.log(tempFriendshipRequest1.receivedUser);
+    // console.log(Meteor.users.findOne({_id:tempFriendshipRequest1.receivedUser}).profile.friendRequestPending.length);
+    // var checkLengthReceiveUserFriendRequestPending = Meteor.users.findOne({_id:tempFriendshipRequest1.receivedUser}).profile.friendRequestPending;
+    // if (checkLengthReceiveUserFriendRequestPending.length>0) {
+    //     var checkSum = 0;
+    //     for (var i = 0; i < checkLengthReceiveUserFriendRequestPending.length; i++) {
+    //         if(checkLengthReceiveUserFriendRequestPending[i] === tempFriendshipRequest1.initatedUser){
+    //             checkSum += 1;
+    //         }
+    //     };
+    //     console.log(checkSum);
+    // }
 
-
-
-
-
-
-
-        // var tempFriendshipRequest1 = FriendshipCollection.findOne({"status":1});
-        // // var tempFriendshipRequest2 = FriendshipCollection.findOne({"status":2});
-        // // var tempFriendshipRequest3 = FriendshipCollection.findOne({"status":3});
-        //
-        // console.log(tempFriendshipRequest1.receivedUser);
-        // console.log(Meteor.users.findOne({_id:tempFriendshipRequest1.receivedUser}).profile.friendRequestPending.length);
-        // var checkLengthReceiveUserFriendRequestPending = Meteor.users.findOne({_id:tempFriendshipRequest1.receivedUser}).profile.friendRequestPending;
-        // if (checkLengthReceiveUserFriendRequestPending.length>0) {
-        //     var checkSum = 0;
-        //     for (var i = 0; i < checkLengthReceiveUserFriendRequestPending.length; i++) {
-        //         if(checkLengthReceiveUserFriendRequestPending[i] === tempFriendshipRequest1.initatedUser){
-        //             checkSum += 1;
-        //         }
-        //     };
-        //     console.log(checkSum);
-        // }
-
-
-        // if (tempFriendshipRequest1 && tempFriendshipRequest1.receivedUser===Meteor.userId()) {
-        //     Meteor.users.update(
-        //             {_id:Meteor.userId()},
-        //             {$push :
-        //                 {'profile.friendRequestPending':tempFriendshipRequest1.initiatedUser}
-        //             }
-        //     );
-        //     FriendshipCollection.remove({_id:tempFriendshipRequest1._id});
-        // }
-        // if (tempFriendshipRequest.initiatedUser===Meteor.userId()) {
-        //     Meteor.users.update(
-        //             {_id:Meteor.userId()},
-        //             {$push :{
-        //                 'profile.friendlist':{
-        //                         'userId':tempFriendshipRequest.receivedUser,
-        //                     }
-        //                 }
-        //             });
-        // } else if(tempFriendshipRequest.receivedUser===Meteor.userId()){
-        //     Meteor.users.update(
-        //             {_id:Meteor.userId()},
-        //             {$push :{
-        //                 'profile.friendlist':{
-        //                         'userId':tempFriendshipRequest.initiatedUser
-        //                     }
-        //                 }
-        //             });
-        // };
+    // if (tempFriendshipRequest1 && tempFriendshipRequest1.receivedUser===Meteor.userId()) {
+    //     Meteor.users.update(
+    //             {_id:Meteor.userId()},
+    //             {$push :
+    //                 {'profile.friendRequestPending':tempFriendshipRequest1.initiatedUser}
+    //             }
+    //     );
+    //     FriendshipCollection.remove({_id:tempFriendshipRequest1._id});
+    // }
+    // if (tempFriendshipRequest.initiatedUser===Meteor.userId()) {
+    //     Meteor.users.update(
+    //             {_id:Meteor.userId()},
+    //             {$push :{
+    //                 'profile.friendlist':{
+    //                         'userId':tempFriendshipRequest.receivedUser,
+    //                     }
+    //                 }
+    //             });
+    // } else if(tempFriendshipRequest.receivedUser===Meteor.userId()){
+    //     Meteor.users.update(
+    //             {_id:Meteor.userId()},
+    //             {$push :{
+    //                 'profile.friendlist':{
+    //                         'userId':tempFriendshipRequest.initiatedUser
+    //                     }
+    //                 }
+    //             });
+    // };
 
 });
-//
-//
+
+
 // // Template.registerHelper('checkNewMessages', function(){
 // //     if (FriendshipCollection.findOne()) {
 // //         var tempFriendshipRequest1 = FriendshipCollection.find({"status":1, "receivedUser":Meteor.userId()}).fetch();
@@ -195,8 +166,18 @@ Template.registerHelper('updateFriendshipStatus', function(){
 // //     }
 // // });
 
+// // Template.registerHelper('getProfileImg', function(userId){
+// //     var imgUrl=UserImages.findOne({userId: userId}).image;
+// //     return imgUrl;
+// // });
+//
 
-Template.registerHelper('renderSession', function(){
-        lastUpdated = Session.get('pageTitle');
-        return lastUpdated;
-});
+
+// Template.registerHelper('truncateText', function(text, length){
+//     if (text.length>200) {
+//         var newText = text.substring(200, length) + "  .... [클릭하여 더보기]";
+//         return new Spacebars.SafeString(newText);
+//     } else {
+//         return text;
+//     }
+// });
