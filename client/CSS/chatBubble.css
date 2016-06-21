@@ -1,0 +1,46 @@
+.chat img{
+    width: 40px;
+}
+
+.bubble{
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 8px 18px;
+    position: relative;
+    font-size: 0.9em;
+}
+
+.bubble::before {
+    background-color: white;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform:             rotate( 29deg ) skew( -35deg );
+        -moz-transform:    rotate( 29deg ) skew( -35deg );
+        -ms-transform:     rotate( 29deg ) skew( -35deg );
+        -o-transform:      rotate( 29deg ) skew( -35deg );
+        -webkit-transform: rotate( 29deg ) skew( -35deg );
+    width:  20px;
+}
+.you {
+    float: left;
+    margin: 5px 60px 5px 0px;
+}
+.you::before {
+    left: -9px;
+    /*border: 1px solid red;*/
+}
+
+.me {
+    background-color: #92c5d1;
+    float: right;
+    margin: 5px 0px 5px 80px;
+}
+
+.me::before {
+    background-color: #92c5d1;
+    right: -9px;
+}

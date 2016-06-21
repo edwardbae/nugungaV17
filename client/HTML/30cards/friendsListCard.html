@@ -1,5 +1,6 @@
 <template name="friendsListCard">
     {{#each friendsGido}}
+    <a href="{{pathFor 'poster'}}">
         <div class="friendsListCard postedGidoCardDiv boxShadow0 container">
             <div class="row">
                 <div class="col-xs-3 imgCol text-center">
@@ -12,5 +13,6 @@
                 </div>
             </div>
         </div>
-        {{/each}}
+    </a>
+    {{/each}}
 </template>

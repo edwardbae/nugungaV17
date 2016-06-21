@@ -2,7 +2,7 @@
     {{renderPage}}
 </body>
 
-<template name="layout">
+<template name="chatLayout">
     <div id="messageDiv{{currentUser._id}}">
     {{> flashMessages}}
     </div>
@@ -12,12 +12,7 @@
     {{> navbarTop}}
     {{> yield}}
     {{#if currentUser}}
-
-        {{#if checkchatroom}}
-            {{> chatNavbarBottom}}
-        {{else}}
-            {{> navbarBottom}}
-        {{/if}}
+        {{> navbarBottom}}
     {{/if}}
 
 </template>

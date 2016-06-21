@@ -1,43 +1,22 @@
 <template name="poster">
-    Poster Page
-    {{#each postUser}}
-    <div class="myProfileCardDiv whiteDiv boxShadow1 container">
-        <div class="row">
-            <div class="col-xs-4 leftcolumn">
-                <div class="profileImg text-center">
-                    <img src="/img/profileAnonymM.png" alt="" />
-                </div>
-                <div class="friendBtn text-center">
-                    {{#if $neq currentUser._id userId}}
-                        {{#if friendshipStatus}}
-                            <button type="button" class="btn btn-warning btn-xs btn-block disabled">친구 신청 기다림</button>
-                        {{else}}
-                            <!-- {{#if alreadyFriend userId}}
-                                <button type="button" class="btn btn-info btn-xs btn-block disabled">친구</button>
-                            {{else}} -->
-                                <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block">친구 신청</button>
-                            <!-- {{/if}} -->
-                        {{/if}}
-                    {{/if}}
-                </div>
+    <!-- Poster Page -->
+    <!-- {{#each postUser}} -->
+    <div class="chat container">
+            <div class="midgrey text-center">------------ 2016년 6월 21일 ------------</div>
+        &nbsp;<br>
+            <div class="bubble me boxShadow0">
+                First Chat Bubble, consectetur adipisicing elit, sed do eiusmod tempor.
             </div>
-            <div class="col-xs-8 rightcolumn">
-                <div class="username">
-                    {{username}} - {{userId}}
-                </div>
-                <div class="selfIntro">
-                    로렘 입숨은 출판이나 그래픽 디자인 시각적 연출 보여줄 사용하는 표준 채우기 텍스트
-                </div>
-                <div class="statGido1">
-                    <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
-                    13번 기도 요청
-                    <br>
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    1시간 14분44초 총기도시간
-                </div>
+
+        &nbsp;<br>
+            <div class="usernameYou floatLeft">
+            <img src="/img/profileAnonymM.png" alt="" />
+                배정근
             </div>
-        </div>
+            <div class="bubble you boxShadow0">
+                Second Chat Bubble amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+        &nbsp;<br>
     </div>
-    <br>
-{{/each}}
+
 </template>

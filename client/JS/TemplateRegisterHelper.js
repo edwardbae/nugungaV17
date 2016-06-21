@@ -19,6 +19,14 @@ Template.registerHelper('momentYear', function(){
 });
 
 
+Template.registerHelper('checkchatroom', function(anonymous, username, userId){
+    var tempPageTitle = Session.get('pageTitle');
+    if (tempPageTitle === "chatroom") {
+        return 1;
+    } else {
+        return 0;
+    }
+});
 Template.registerHelper('checkAnonymous', function(anonymous, username, userId){
     if (anonymous === false) {
         return username;

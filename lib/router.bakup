@@ -51,7 +51,6 @@ Router.map(function(){
         template: 'poster',
         data: function(){
             Session.set("postId", this.params._id); //grabs the _id of the Posts docmument
-            Session.set("pageTitle", "chatroom"); 
         },
     });
     this.route('user', {

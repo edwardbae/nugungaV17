@@ -3,6 +3,9 @@
     width: 100%;
     height: 18px;
 }
+.navbar-fixed-top {
+    border: 0;
+}
 .navbar-fixed-top .navbarTitleDiv{
     padding-top: 4px;
 }
@@ -18,7 +21,6 @@
     font-size: 1.4em;
     color:#69a2b2;
 }
-
 .navbar-fixed-top ul{
     list-style: none;
     padding: 0;
@@ -37,4 +39,16 @@
     padding: 10px;
     font-size: 1.4em;
     color:#69a2b2;
+}
+#chatNavbar a{
+    padding: 10px;
+    font-size: 1.4em;
+    width: 20px;
+    color:#69a2b2;
+}
+.navbar-fixed-bottom #chatNavbar input{
+    padding: 5px;
+    margin-top: 4px;
+    width: 75%;
+    border: 1px solid #cccccc;
 }
