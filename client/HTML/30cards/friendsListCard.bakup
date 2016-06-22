@@ -1,0 +1,18 @@
+<template name="friendsListCard">
+    {{#each friendsGido}}
+    <a href="{{pathFor 'poster'}}">
+        <div class="friendsListCard postedGidoCardDiv boxShadow0 container">
+            <div class="row">
+                <div class="col-xs-3 imgCol text-center">
+                    <img src="/img/profileAnonymM.png" alt="" />
+                </div>
+                <div class="col-xs-9 name">
+                    <div class="friendName floatLeft"><small>{{username}}</small></div>
+                    <div class="friendTime floatRight"><small>{{formattedDate}}</small></div>
+                    <div class="friendPost floatClear"><small>아 감사합니다. 네 별일은 없는데 참 저희 신랑이 참 그러네요.. </small></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    {{/each}}
+</template>

@@ -7,14 +7,14 @@
                     <a class="navbarTitle" href="#">{{renderSession}} - {{currentUser.username}}</a>
                 </div>
                 <div class="col-xs-3">
-                    <a href="#" class="collapsed fa fa-cog floatRight" data-toggle="collapse" data-target="#navbarMain" aria-expanded="false" aria-controls="navbar" aria-hidden="true"></a>
+                    <a href="#" class="collapsed glyphicon glyphicon-log-in floatRight" data-toggle="collapse" data-target="#navbarMain" aria-expanded="false" aria-controls="navbar" aria-hidden="true" style="font-size:1.4em; padding-top:6px;"></a>
                 </div>
             </div>
             <div id="navbarMain" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
-                    <li><a href="{{pathFor 'friendRequestPage'}}">친구 관리</a></li>
-                    <li><a href="">설정</a></li>
+                    <!-- <li><a href="{{pathFor 'friendRequestPage'}}">친구 관리</a></li>
+                    <li><a href="">설정</a></li> -->
                     {{/if}}
                     {{> loginButtons}}
                 </ul>
