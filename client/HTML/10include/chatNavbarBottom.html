@@ -1,10 +1,14 @@
 <template name="chatNavbarBottom">
     <nav class="navbar navbar-default navbar-fixed-bottom boxShadow1a">
         <div id="chatNavbar">
-                    <a href="javascript:history.back()" id="myGido" class="glyphicon glyphicon-chevron-left floatLeft" aria-hidden="true"></a>
-                    <div class="text-center">
-                        <input type="text" name="name" value="" class="">
-                    </div>
+            <a href="{{pathFor 'friendsGidoPage'}}" id="friendGido" class="glyphicon glyphicon-chevron-left floatLeft" aria-hidden="true"></a>
+
+                    <!-- <a href="javascript:history.back()" id="myGido" class="glyphicon glyphicon-chevron-left floatLeft" aria-hidden="true"></a> -->
+                    <form class="chatInput">
+                        <div class="text-center">
+                            <input type="text" name="chatText" value="" class="" placeholder="gido">
+                        </div>
+                    </form>
         </div>
     </nav>
 

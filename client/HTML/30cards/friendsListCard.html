@@ -1,14 +1,14 @@
 <template name="friendsListCard">
-    {{#each friendsGido}}
-    <a href="#" data-toggle="modal" data-target="#friendModal">
-    <!-- <a href="{{pathFor 'poster'}}"> -->
+    {{#each listFriend}}
+
+    <a href="#" id="friendModal" data-toggle="modal" data-target="#friendModal{{this}}" >
         <div class="friendsListCard postedGidoCardDiv boxShadow0 container">
             <div class="row">
                 <div class="col-xs-3 imgCol text-center">
                     <img src="/img/profileAnonymM.png" alt="" />
                 </div>
                 <div class="col-xs-9 name">
-                    <div class="friendName floatLeft"><small>{{username}}</small></div>
+                    <div class="friendName floatLeft"><small>{{findUsername this}}</small></div>
                     <div class="friendTime floatRight"><small>{{formattedDate}}</small></div>
                     <div class="friendPost floatClear"><small>아 감사합니다. 네 별일은 없는데 요즘 하는 일들이.. </small></div>
                 </div>
@@ -16,18 +16,17 @@
         </div>
     </a>
 
-
-    <!-- Modal -->      <!-- has to sit outside /nav to render correctly -->
-    <div id="friendModal" class="modal fade" tabindex="-1" role="dialog">
+    <!-- Modal -->
+    <div id="friendModal{{this}}" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content text-center">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">{{username}}</h4>
+            <h4 class="modal-title">{{findUsername this}}</h4>
           </div>
           <div class="modal-body text-center">
-              <div id="displayTime" style="font-size:1.2em; font-weight:strong;">
-                  00:00
+              <div id="displayTime{{this}}" style="font-size:1.2em; font-weight:strong;">
+                  0:0:0
               </div> <br>
               <div id="resultText" style="font-size:1.2em; font-weight:strong;">
                  누군가 기도
@@ -39,9 +38,13 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div>
+    </div>
+    <!-- /.modal -->
+
+
 
     {{/each}}
+
 </template>

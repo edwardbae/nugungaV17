@@ -1,8 +1,15 @@
-<template name="poster">
-    <!-- Poster Page -->
-    <!-- {{#each postUser}} -->
-    <div class="chat container">
-            <div class="midgrey text-center">------------ 2016년 6월 21일 ------------</div>
+<template name="chatroom">
+
+    {{#each displayChat}}
+            <div class="">
+                <br>{{findUsername user}}: {{text}} <small style="float:right; color:#ccc">{{formattedDate}}</small>
+            </div>
+    {{/each}}
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+    <!-- <div class="chat container">
+            <div class="midgrey text-center">  2016년 6월 21일  </div>
         &nbsp;<br>
             <div class="bubble me boxShadow0">
                 First Chat Bubble, consectetur adipisicing elit, sed do eiusmod tempor.
@@ -17,6 +24,5 @@
                 Second Chat Bubble amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
         &nbsp;<br>
-    </div>
-
+    </div> -->
 </template>

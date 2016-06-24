@@ -26,70 +26,42 @@ Template.answeredPostedGidoCard.helpers({
     },
 });
 
-Template.poster.helpers({
-    postUser: function(){
-        return Posts.find({_id:Session.get('postId')})
-    },
-    friendshipStatus:function(){
-        var tempPostObj = Posts.findOne({"_id":Session.get('postId')});
-        var checkStatus = 0;
-        if (Meteor.user().profile.friendRequestPending) {
-            for (var i = 0; i < Meteor.user().profile.friendRequestPending.length; i++) {
-                if (Meteor.user().profile.friendRequestPending[i] === tempPostObj.userId) {
-                    checkStatus += 1;
-                }
-            }
-        };
-        if (Meteor.user().profile.friendRequestSent) {
-            for (var i = 0; i < Meteor.user().profile.friendRequestSent.length; i++) {
-                if (Meteor.user().profile.friendRequestSent[i] === tempPostObj.userId) {
-                    checkStatus += 1;
-                }
-            }
-        };
-        if (Meteor.user().profile.friendConnected) {
-            for (var i = 0; i < Meteor.user().profile.friendConnected.length; i++) {
-                if (Meteor.user().profile.friendConnected[i] === tempPostObj.userId) {
-                    checkStatus += 1;
-                }
-            }
-        };
-        if (checkStatus === 0) {
-            return 0
-        }
-        else {
-            return 1
-        }
-    },
-
-
-    // friendshipStatus:function(){
-    //     var userPostId = Session.get('postId');
-    //     var posterPage = Posts.findOne({_id:userPostId});
-    //     frienshipExists = FriendshipCollection.findOne({$and:[{$or:[{"initiatedUser":Meteor.userId()}, {"receivedUser":Meteor.userId()}]}, {$or:[{"initiatedUser":posterPage.userId}, {"receivedUser":posterPage.userId}]}]}    )
-    //     if (frienshipExists) {
-    //         return 1
-    //     } else {
-    //         return 0
-    //     }
-    // },
-//     users: function(){
-//         return Meteor.users.find({});
+// Template.poster.helpers({
+//     postUser: function(){
+//         return Posts.find({_id:Session.get('postId')})
 //     },
-//     alreadyFriend:function(passedinId){
-//         tempUserFriend = Meteor.users.findOne(Meteor.userId()).profile.friendlist
-//         console.log(tempUserFriend[0].userId);
-//         var returnValue = 0;
-//         for (var i = 0; i < tempUserFriend.length; i++) {
-//             if (tempUserFriend[i].userId === passedinId) {
-//                 returnValue += 1;
-//             } else {
-//                 returnValue = 0;
+//     friendshipStatus:function(){
+//         var tempPostObj = Posts.findOne({"_id":Session.get('postId')});
+//         var checkStatus = 0;
+//         if (Meteor.user().profile.friendRequestPending) {
+//             for (var i = 0; i < Meteor.user().profile.friendRequestPending.length; i++) {
+//                 if (Meteor.user().profile.friendRequestPending[i] === tempPostObj.userId) {
+//                     checkStatus += 1;
+//                 }
 //             }
+//         };
+//         if (Meteor.user().profile.friendRequestSent) {
+//             for (var i = 0; i < Meteor.user().profile.friendRequestSent.length; i++) {
+//                 if (Meteor.user().profile.friendRequestSent[i] === tempPostObj.userId) {
+//                     checkStatus += 1;
+//                 }
+//             }
+//         };
+//         if (Meteor.user().profile.friendConnected) {
+//             for (var i = 0; i < Meteor.user().profile.friendConnected.length; i++) {
+//                 if (Meteor.user().profile.friendConnected[i] === tempPostObj.userId) {
+//                     checkStatus += 1;
+//                 }
+//             }
+//         };
+//         if (checkStatus === 0) {
+//             return 0
 //         }
-//         return returnValue;
+//         else {
+//             return 1
+//         }
 //     },
-});
+// });
 
 Template.user.helpers({
     requests: function(){
@@ -126,7 +98,16 @@ Template.friendsListCard.helpers({
 
 Template.friendsNameCard.helpers({
     listFriendCard: function(){
-    return Meteor.users.findOne(Meteor.userId()).profile.friendlist;
+        if (Meteor.users.findOne(Meteor.userId())) {
+            return Meteor.users.findOne(Meteor.userId()).profile.friendlist;
+        }
+  },
+});
+Template.friendsListCard.helpers({
+    listFriend: function(){
+        if (Meteor.users.findOne(Meteor.userId())) {
+            return Meteor.users.findOne(Meteor.userId()).profile.friendRequestAccepted;
+        }
   },
 });
 

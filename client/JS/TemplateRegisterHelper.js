@@ -19,9 +19,9 @@ Template.registerHelper('momentYear', function(){
 });
 
 
-Template.registerHelper('checkchatroom', function(anonymous, username, userId){
+Template.registerHelper('checkroomname', function(anonymous, username, userId){
     var tempPageTitle = Session.get('pageTitle');
-    if (tempPageTitle === "chatroom") {
+    if (tempPageTitle === "gido room") {
         return 1;
     } else {
         return 0;
@@ -42,8 +42,10 @@ Template.registerHelper('checkAnonymousLink', function(anonymous){
     }
 });
 Template.registerHelper('findUsername', function(tempUserId){
-    var tempObj = Meteor.users.findOne({"_id":tempUserId}).username;
-    return tempObj;
+    if (Meteor.users.findOne({"_id":tempUserId})) {
+        var tempObj = Meteor.users.findOne({"_id":tempUserId}).username;
+        return tempObj;
+    }
 });
 Template.registerHelper('checkToWhom', function(toWhom){
     if (toWhom === "0") {
