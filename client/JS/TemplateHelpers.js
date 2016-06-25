@@ -97,7 +97,8 @@ Template.navbarBottom.helpers({
 
 Template.landing.helpers({
     runSim: function(){
-        swal("Welcome!", "누군가 성도님을 위해 3분 43초동안 기도를 했습니다")
+        setTimeout(function(){ swal("다시오신것 환영합니다!", "누군가 "+Meteor.user(Meteor.userId()).username+"님을 위해 3분 43초동안 기도를 했습니다") }, 1500);
+
     }
 });
 

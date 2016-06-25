@@ -1,12 +1,22 @@
 <template name="allGidoPage">
     <div class="container text-center">
-        "nugunga" gido list <br>
-        <small>These are list of prayers from all users who have made their gido public</small> <br><br>
+        <div style="background:yellow;padding:5px;">
+            "nugunga" gido list <br>
+            <small>These are list of all prayers from users who have checked "기도공유" from their prayers.</small> <br>
+        </div>
+    <br>
+    </div>
+    <div class="container text-center">
+        <div style="background:yellow;padding:5px;">
+            <small> To see all the new prayers that have been uploaded since you checked in, press "update" button</small> <br>
+        </div>
+    <br>
     </div>
     <div class="allGidoPage">
         <div class="text-center">
             <button class="updateBtn btn btn-info btn-lg boxShadow0" type="button" name="button" id="showNewPosts" style="background:#69a2b2; border:0;">최신 기도 업데이트 버튼</button>
         </div> <br>
+
         {{> allPostedGidoCard}}
     </div>
     <br><br>

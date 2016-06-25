@@ -8,14 +8,24 @@
     <br><br><br>
     <div class="text-center container">
 
+
+
+        {{#if currentUser}}
+            {{runSim}}
+            <br><br> use the menu at bottom to navigate to different pages
+        {{else}}
         <br>
-        login name: alphatest<br>
-        login pw: password11
-        <br><br>
-        <br><br>
-        <small>for better experience please save this app to your home screen and launch from your homescreen</small>
+        Please click " <span class="glyphicon glyphicon-log-in"></span> " and use
+        <br>
+        <br>username: Alphatest
+        <br>pw: password11
+        <br><br><br>
+
+        <br>
+        <small>
+            <br>if using iPhone, for better experience please save this app to your home screen and launch from your homescreen
+        </small>
+        {{/if}}
     </div>
-    {{#if currentUser}}
-        {{runSim}}
-    {{/if}}
+
 </template>
