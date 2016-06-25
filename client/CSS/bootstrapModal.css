@@ -1,8 +1,27 @@
+/*modal fly in from the bottom*/
 .modal.fade:not(.in) .modal-dialog {
     -webkit-transform: translate3d(0, 50%, 0);
     transform: translate3d(0, 50%, 0);
 }
 
+/*modal padding at top*/
 .modal{
     padding-top: 20%;
+}
+
+/*prevents expansion of bootstrap navbar*/
+@media (min-width: 768px)
+{
+    .navbar-header
+    {
+        float: none;
+    }
+    .navbar-toggle
+    {
+        display: block;
+    }
+    .navbar-collapse.collapse
+    {
+        display: none !important;
+    }
 }

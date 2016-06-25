@@ -31,6 +31,7 @@
 .pgcdBody .postedPrayer{
     background: white;
     padding:5px;
+    padding-bottom: 15px;
     font-size: 0.9em;
 }
 .pgcdBody .comment{

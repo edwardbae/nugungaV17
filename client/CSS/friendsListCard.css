@@ -18,3 +18,12 @@
 .friendsListCard .friendTime{
     color: #cccccc;
 }
+
+#startPrayer{
+    background: #69a2b2;
+    border: 0;
+}
+#enterChat{
+    background: #69a2b2;
+    border: 0;
+}

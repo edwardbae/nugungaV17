@@ -10,7 +10,7 @@
                 <div class="col-xs-9 name">
                     <div class="friendName floatLeft"><small>{{findUsername this}}</small></div>
                     <div class="friendTime floatRight"><small>{{formattedDate}}</small></div>
-                    <div class="friendPost floatClear"><small>아 감사합니다. 네 별일은 없는데 요즘 하는 일들이.. </small></div>
+                    <div class="friendPost floatClear"><small>{{latestPost this}} </small></div>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                  누군가 기도
               </div> <br>
                 <button id="startPrayer" type="button" class="btn btn-primary">기도하기</button>
-                <button id="enterChat" type="button" class="btn btn-primary">채팅하기</button>
+                <button id="enterChat" type="button" class="btn btn-primary">기도방</button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
