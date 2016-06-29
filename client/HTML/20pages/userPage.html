@@ -1,31 +1,51 @@
 <template name="user">
-    User Page
+    User Page xxx
     {{#each requests}}
-    <div class="myProfileCardDiv whiteDiv boxShadow1 container">
+    <div class="postedGidoCardDiv boxShadow0  container">
         <div class="row">
             <div class="col-xs-4 leftcolumn">
                 <div class="profileImg text-center">
                     <img src="/img/profileAnonymM.png" alt="" />
                 </div>
                     <div class="friendBtnAccept text-center">
-                        {{friendshipStatus}}
-                            <button id="friendRequestAcceptBtn" type="button" class="btn btn-success btn-xs">친구연결</button>
-                            <button id="friendRequestDeclineBtn" type="button" class="btn btn-danger btn-xs ">친구거절</button>
+                        {{#if $neq currentUser._id userId}}
+                            {{#if friendRequestAccepted}}
+                                <button type="button" class="btn btn-info btn-xs btn-block disabled">친구</button>
+                            {{else}}
+                                {{#if friendRequestSent}}
+                                    <button type="button" class="btn btn-warning btn-xs btn-block disabled">친구신청 기다림</button>
+                                {{else}}
+                                    {{#if friendRequestRecieved}}
+                                        <button id="friendRequestAcceptBtn" type="button" class="btn btn-success btn-block btn-xs">친구연결</button>
+                                        <button id="friendRequestDeclineBtn" type="button" class="btn btn-danger btn-block btn-xs ">친구거절</button>
+                                    {{else}}
+                                        {{#if friendRequestDeclined}}
+                                            <button type="button" class="btn btn-danger btn-xs btn-block disabled">친구신청</button>                                       
+                                        {{else}}
+                                            <button id="friendRequestBtn" type="button" class="btn btn-success btn-xs btn-block">친구신청</button>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
                     </div>
             </div>
             <div class="col-xs-8 rightcolumn">
-                <div class="username">
-                    {{username}} - {{_id}}
+                <div class="username text-center">
+                    <br>{{username}} - {{_id}} <hr>
                 </div>
-                <div class="selfIntro">
-                    로렘 입숨은 출판이나 그래픽 디자인 시각적 연출 보여줄 사용하는 표준 채우기 텍스트
+
+                <div class="selfIntro" >
+                    <small>로렘 입숨은 출판이나 그래픽 디자인 시각적 연출 보여줄 사용하는 표준 채우기 텍스트</small>
                 </div>
                 <div class="statGido1">
-                    <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
-                    13번 기도 요청
-                    <br>
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    1시간 14분44초 총기도시간
+                    <small>
+                        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+                        기도 요청: 13번
+                        <br>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        총기도시간: 1시간 14분44초
+                    </small>
                 </div>
             </div>
         </div>

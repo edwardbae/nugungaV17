@@ -17,7 +17,38 @@ Template.registerHelper('momentDate', function(){
 Template.registerHelper('momentYear', function(){
     return moment(this.createdAt).format('YYYY');
 });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//xxx here i have a problem when there are no chatHistory exists.  it should return "<- 아직 시작한 대화가 없습니다 ->", but instead returns an error on console window;
+Template.friendsListCard.helpers({
+    latestPost: function(tempuserid){
+        if (Chat.find({users: tempuserid, users:Meteor.userId()}).fetch()[0]) {
+            var temparray =  Chat.findOne({$and:[{users: tempuserid},{users:Meteor.userId()}]}, {sort:{createdAt: -1 }}).chatHistory;
+            returnText = temparray[temparray.length-1].text ;
+            if (returnText.length>50) {
+                var newText = returnText.substring(50, length) + "  .... ";
+                return new Spacebars.SafeString(newText);
+            } else {
+                return returnText;
+            }
+        } else {
+            return "<- 아직 시작한 대화가 없습니다 ->"
+        };
+    },
+});
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Template.registerHelper('loggedInDate', function(){
+    Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$push :
+            {'profile.loggedin':new Date()}
+        }
+    );
+    var tempLoggedInDate = Meteor.user(Meteor.userId()).profile.loggedin;
+    lastLoggedInDate = tempLoggedInDate[tempLoggedInDate.length-2];
+    if (Chat.find( { $and: [ {users:Meteor.userId()},{chatHistory:{$elemMatch:{ createdAt: { $gt: lastLoggedInDate }}}}]}).fetch().length!==0) {
+        FlashMessages.sendError("새로운 기도방 메세지가 있습니다", { autoHide: false });
+    }
+});
 
 Template.registerHelper('checkroomname', function(anonymous, username, userId){
     var tempPageTitle = Session.get('pageTitle');
@@ -64,7 +95,18 @@ Template.registerHelper('checkComment', function(commentId){
         return tempObj.comments.length;
     }
 });
+Template.registerHelper('truncateText', function(text, length){
+    if (text.length>100) {
+        var newText = text.substring(100, length) + "  .... [클릭하여 더보기]";
+        return new Spacebars.SafeString(newText);
+    } else {
+        return text;
+    }
+});
 Template.registerHelper('updateFriendshipStatus', function(){
+    //staus:1 friendRequestRecieved
+    //status:2 friendRequestAccepted
+    //status:3 friendRequestDeclined
     if (FriendshipCollection.findOne({"status":1, "receivedUser":Meteor.userId()})) {
         var tempRequest = FriendshipCollection.findOne({"status":1, "receivedUser":Meteor.userId()})
         var tempRequestedUserAccount = Meteor.users.findOne({"_id":tempRequest.receivedUser});
@@ -72,10 +114,10 @@ Template.registerHelper('updateFriendshipStatus', function(){
             Meteor.users.update(
                     {_id:Meteor.userId()},
                     {$push :
-                        {'profile.friendRequestPending':tempRequest.initiatedUser}
+                        {'profile.friendRequestRecieved':tempRequest.initiatedUser}
                     }
             );
-            FlashMessages.sendInfo(tempRequest.initiatedUsername+"님이 친구 신청을 했습니다."+"<br><a href='/friendRequestPage'> -친구관리로 이동-</a>", { autoHide: false });
+            FlashMessages.sendError(tempRequest.initiatedUsername+"님이 친구 신청을 했습니다."+"<br><a href='/friendRequestPage'> -친구관리로 이동-</a>", { autoHide: false });
             FriendshipCollection.remove({_id:tempRequest._id});
         }
     } else if (FriendshipCollection.findOne({"status":2, "receivedUser":Meteor.userId()})) {
@@ -91,10 +133,10 @@ Template.registerHelper('updateFriendshipStatus', function(){
             Meteor.users.update(
                     {_id:Meteor.userId()},
                     {$pull :
-                        {'profile.friendRequestPending':tempRequest.initiatedUser}
-                    }
+                        {'profile.friendRequestSent':tempRequest.initiatedUser}
+                    }//xxx is this friendRequestRecieved or friendRequestSent
             );
-            FlashMessages.sendInfo(tempRequest.initiatedUsername+"님과 친구 연결이 되었습니다."+"<br><a href='/friendRequestPage'> -친구관리로 이동-</a>", { autoHide: false });
+            FlashMessages.sendError(tempRequest.initiatedUsername+"님과 친구 연결이 되었습니다.", { autoHide: false });
             FriendshipCollection.remove({_id:tempRequest._id});
         }
     } else if (FriendshipCollection.findOne({"status":3, "receivedUser":Meteor.userId()})) {
@@ -110,10 +152,9 @@ Template.registerHelper('updateFriendshipStatus', function(){
             Meteor.users.update(
                     {_id:Meteor.userId()},
                     {$pull :
-                        {'profile.friendRequestPending':tempRequest.initiatedUser}
+                        {'profile.friendRequestSent':tempRequest.initiatedUser}
                     }
             );
-            FlashMessages.sendInfo(tempRequest.initiatedUsername+"님과 친구 거절 되었습니다."+"<br><a href='/friendRequestPage'> -친구관리로 이동-</a>", { autoHide: false });
             FriendshipCollection.remove({_id:tempRequest._id});
         }
     }
@@ -181,13 +222,3 @@ Template.registerHelper('updateFriendshipStatus', function(){
 // //     return imgUrl;
 // // });
 //
-
-
-// Template.registerHelper('truncateText', function(text, length){
-//     if (text.length>200) {
-//         var newText = text.substring(200, length) + "  .... [클릭하여 더보기]";
-//         return new Spacebars.SafeString(newText);
-//     } else {
-//         return text;
-//     }
-// });

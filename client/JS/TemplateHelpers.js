@@ -27,21 +27,7 @@ Template.answeredPostedGidoCard.helpers({
     },
 });
 
-Template.user.helpers({
-    requests: function(){
-        return Meteor.users.find({_id:Session.get('friendRequestId')});
-    },
-    friendshipStatus:function(){
-        console.log(Meteor.user.profile.friendRequestAccepted);
-    },
-    friendshipConnected:function(){
-        if (true) {
-            return 0
-        } else {
-            return 1
-        }
-    },
-});
+
 
 Template.friendsListCard.helpers({
     friendsGido: function(){
@@ -77,17 +63,18 @@ Template.friendsListCard.helpers({
 Template.navbarBottom.helpers({
     makeactive: function(){
         var axxxx = Session.get('pageTitle');
-        if (axxxx==="나의 기도") {
+
+        if (axxxx==="home") {
             $("#myGido").addClass('active');
             $("#friendGido").removeClass('active');
             $("#allGido").removeClass('active');
         }
-        if (axxxx==="친구의 기도") {
+        if (axxxx==="friends") {
             $("#myGido").removeClass('active');
             $("#friendGido").addClass('active');
             $("#allGido").removeClass('active');
         }
-        if (axxxx==="모두의 기도") {
+        if (axxxx==="nugunga") {
             $("#myGido").removeClass('active');
             $("#friendGido").removeClass('active');
             $("#allGido").addClass('active');
@@ -97,7 +84,7 @@ Template.navbarBottom.helpers({
 
 Template.landing.helpers({
     runSim: function(){
-        setTimeout(function(){ swal("다시오신것 환영합니다!", "누군가 "+Meteor.user(Meteor.userId()).username+"님을 위해 3분 43초동안 기도를 했습니다") }, 1500);
+        setTimeout(function(){ swal("다시오신것 환영합니다!", "누군가 "+Meteor.user(Meteor.userId()).username+"님을 위해 3분 43초동안 기도를 했습니다") }, 500);
 
     }
 });

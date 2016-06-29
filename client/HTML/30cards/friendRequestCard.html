@@ -1,15 +1,5 @@
-<template name="friendRequestCard">
-    <div class="friendRelationDiv">
-        최신 친구 요청:
-        {{#each friendRequestsFunc}}
-            <br>
-            <a href="/user/{{this}}">{{findUsername this}}</a>
-        {{/each}}
-    </div>
-</template>
-
-<template name="friendListCard">
-    <div class="friendRelationDiv">
+<template name="friendRequestAcceptedCard">
+    <div class="postedGidoCardDiv boxShadow0">
         친구 리스트:
         {{#each friendListFunc}}
             <br>
@@ -18,9 +8,19 @@
     </div>
 </template>
 
+<template name="friendRequestRecievedCard">
+    <div class="postedGidoCardDiv boxShadow0">
+        친구 신청 받음:
+        {{#each friendRequestRecievedFunc}}
+            <br>
+            <a href="/user/{{this}}">{{findUsername this}}</a>
+        {{/each}}
+    </div>
+</template>
+
 <template name="friendRequestSentCard">
-    <div class="friendRelationDiv">
-        친구 신청 기다림:
+    <div class="postedGidoCardDiv boxShadow0">
+        친구 신청 보냄:
         {{#each friendRequestSentFunc}}
             <br>
             <a href="#">{{findUsername this}}</a>
@@ -29,8 +29,8 @@
 </template>
 
 <template name="friendRequestDeclinedCard">
-    <div class="friendRelationDiv boxShadow1">
-        친구 declined:
+    <div class="postedGidoCardDiv boxShadow0">
+        친구 신청 거절:
         {{#each friendRequestDeclinedFunc}}
             <br>
             <a href="#">{{findUsername this}}</a>

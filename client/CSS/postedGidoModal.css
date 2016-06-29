@@ -1,6 +1,5 @@
 .postedGidoModalDiv .modal-body{
 
-
 }
 .postedGidoModalDiv .modal-header .date{
     padding-top: 50px;
@@ -32,9 +31,13 @@
 .postedGidoModalDiv .modalbody-comment .commentPostFootnotes{
     color: #9D9D9D;
 }
+.postedGidoModalDiv .modalbody-comment .commentPostFootnotes a{
+    color: #9D9D9D;
+}
 .postedGidoModalDiv .modalbody-comment #delete-comment{
 }
 .pgcdComment input{
+    width: 80%;
 }
 .postedPrayerReplies .selfComment{
 }

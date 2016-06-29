@@ -38,6 +38,9 @@
 .navbar-fixed-bottom a{
     padding: 10px;
     font-size: 1.4em;
+    color:#aaa;
+}
+.navbar-fixed-bottom .navMenu .active{
     color:#69a2b2;
 }
 #chatNavbar a{

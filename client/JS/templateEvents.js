@@ -1,56 +1,16 @@
-//timer function start
 var time = 0;
 var running = 0;
 var tempCapture;
 var tempSessionId;
 var sendTime = 0;
-function startPause(){
-    if (running === 0) {
-        running = 1;
-        increment();
-        document.getElementById('startPrayer').innerHTML = "기도 보내기"
-    }else {
-        sendTime = time;
-        running = 0;
-        time=0;
-        swal("아멘!", "누군가타임 "+sendTime+"을 친구에게 보냈습니다");
-        swal({
-            title: "아멘!",
-            text: "누군가타임 "+sendTime+"을 친구에게 보냈습니다",
-            type: "success",
-            confirmButtonColor: "#69a2b2",
-            confirmButtonText: "감사합니다!",
-            closeOnConfirm: true },
 
-            function(){
-                setTimeout(function(){
-                    document.getElementById('displayTime'+tempSessionId).innerHTML = "0:0:0";
-                }, 100);
-            }
-        );
+Template.allPostedGidoCard.events({
+    "click #friendModal": function(event){
+        tempCapture = this.valueOf();
+        Session.set("sessionPostId", tempCapture._id);
+    }
+});
 
-        Meteor.users.update(
-                {_id:tempSessionId},
-                {$set:
-                    {'profile.nugungaTime':sendTime}
-                }
-        );
-    }
-};
-function increment(){
-    if (running === 1) {
-        setTimeout(function(){
-            time++;
-            var mins= Math.floor(time/10/60);
-            var secs= Math.floor(time/10);
-            var tenths= time%10;
-            tempSessionId=Session.get("sessionUserId")
-            document.getElementById('displayTime'+tempSessionId).innerHTML = mins+":"+secs+":"+tenths;
-            increment();
-        },100);
-    }
-};
-//timer function end
 
 Template.friendsListCard.events({
     "click #friendModal": function(event, template){
@@ -59,6 +19,68 @@ Template.friendsListCard.events({
     },
     "click #startPrayer": function(event){
         tempSessionId=Session.get("sessionUserId")
+        function startPause(){
+            if (running === 0) {
+                running = 1;
+                increment();
+                document.getElementById('startPrayer').innerHTML = "기도 보내기"
+                if (    PrayerTime.find({receivedUser: tempSessionId,}).fetch()[0]  ) {
+                } else {
+                    PrayerTime.insert({
+                        createdAt:new Date(),
+                        receivedUser: tempSessionId,
+                        allTime:0,
+                        sender:[],
+                    });
+                }
+            }else {
+                sendTime = time;
+                running = 0;
+                time=0;
+                swal("아멘!", "누군가타임 "+sendTime+"을 친구에게 보냈습니다");
+                swal({
+                    title: "아멘!",
+                    text: "누군가타임 "+sendTime+"을 친구에게 보냈습니다",
+                    type: "success",
+                    confirmButtonColor: "#69a2b2",
+                    confirmButtonText: "감사합니다!",
+                    closeOnConfirm: true },
+
+                    function(){
+                        setTimeout(function(){
+                            document.getElementById('displayTime'+tempSessionId).innerHTML = "0:0:0";
+                        }, 100);
+                    },
+                );
+                var temptemptemp = PrayerTime.find({receivedUser: tempSessionId,}).fetch()[0];
+                PrayerTime.update(
+                    {_id: temptemptemp._id},
+                    { $inc: {allTime: sendTime },
+                        $push:{
+                            sender:{
+                                newtime:sendTime,
+                                createdAt:new Date(),
+                                user: Meteor.userId(),
+                            }
+                        }
+                    },
+                );
+                sendTime = 0;
+            }
+        };
+        function increment(){
+            if (running === 1) {
+                setTimeout(function(){
+                    time++;
+                    var mins= Math.floor(time/10/60);
+                    var secs= Math.floor(time/10);
+                    var tenths= time%10;
+                    tempSessionId=Session.get("sessionUserId")
+                    document.getElementById('displayTime'+tempSessionId).innerHTML = mins+":"+secs+":"+tenths;
+                    increment();
+                },100);
+            }
+        };
         startPause();
     },
     "click #enterChat": function(event){
@@ -69,10 +91,8 @@ Template.friendsListCard.events({
         $('.modal-backdrop').remove();//////////////////////////
         /////////////////////////// Removes Modal black backdrop
         if (Chat.find({$and:[{users: tempSessionId},{users:Meteor.userId()}]}).fetch()[0]) {
-            console.log("gidoroom found");
             Router.go('/chatroom/'+tempSessionId);
         } else {
-            console.log("room not found");
             Chat.insert({
                 createdAt:new Date(),
                 users: [Meteor.userId(), tempSessionId ],
@@ -82,6 +102,8 @@ Template.friendsListCard.events({
         };
     },
 });
+
+
 
 Template.chatNavbarBottom.events({
     "submit .chatInput": function(event, template){
@@ -150,6 +172,131 @@ Template.postedGidoCard.events({
 });
 
 Template.postedGidoModal.events({
+
+    "click #startPrayerPGM": function(event){
+        var tempNewPostId = Session.get("sessionPostId");
+        function startPause(){
+            if (running === 0) {
+                running = 1;
+                increment();
+            }else {
+                sendTime = time;
+                running = 0;
+                time=0;
+                swal({
+                    title: "아멘!",
+                    text: "누군가타임 "+sendTime+"을 친구에게 보냈습니다",
+                    type: "success",
+                    confirmButtonColor: "#69a2b2",
+                    confirmButtonText: "감사합니다!",
+                    closeOnConfirm: true },
+
+                    function(){
+                        setTimeout(function(){
+                            var sessionVar = Session.get('sessionPostId');
+                            document.getElementById('displayBtn'+sessionVar).innerHTML = "0:0:0";
+                        }, 100);
+                    },
+                );
+                var temptemptemptemp = Posts.find({_id: tempNewPostId,}).fetch()[0];
+                Posts.update(
+                    {_id: temptemptemptemp._id},
+                    { $inc: {allTime: sendTime },
+                        $push:{
+                            prayedBy:{
+                                time:sendTime,
+                                createdAt:new Date(),
+                                userId: Meteor.userId(),
+                            }
+                        }
+                    },
+                );
+                sendTime = 0;
+            }
+        };
+        function increment(){
+            if (running === 1) {
+                setTimeout(function(){
+                    time++;
+                    var mins= Math.floor(time/10/60);
+                    var secs= Math.floor(time/10);
+                    var tenths= time%10;
+                    var sessionVar = Session.get('sessionPostId');
+                    document.getElementById('displayBtn'+sessionVar).innerHTML = mins+":"+secs+":"+tenths;
+                    increment();
+                },100);
+            }
+        };
+        startPause();
+    },
+
+    "click #startPrayer": function(event){
+        tempSessionId=Session.get("sessionUserId")
+        function startPause(){
+            if (running === 0) {
+                running = 1;
+                increment();
+                document.getElementById('startPrayer').innerHTML = "기도 보내기"
+                if (    PrayerTime.find({receivedUser: tempSessionId,}).fetch()[0]  ) {
+                } else {
+                    PrayerTime.insert({
+                        createdAt:new Date(),
+                        receivedUser: tempSessionId,
+                        allTime:0,
+                        sender:[],
+                    });
+                }
+            }else {
+                sendTime = time;
+                running = 0;
+                time=0;
+                swal("아멘!", "누군가타임 "+sendTime+"을 친구에게 보냈습니다");
+                swal({
+                    title: "아멘!",
+                    text: "누군가타임 "+sendTime+"을 친구에게 보냈습니다",
+                    type: "success",
+                    confirmButtonColor: "#69a2b2",
+                    confirmButtonText: "감사합니다!",
+                    closeOnConfirm: true },
+
+                    function(){
+                        setTimeout(function(){
+                            document.getElementById('displayTime'+tempSessionId).innerHTML = "0:0:0";
+                        }, 100);
+                    },
+                );
+                var temptemptemp = PrayerTime.find({receivedUser: tempSessionId,}).fetch()[0];
+                PrayerTime.update(
+                    {_id: temptemptemp._id},
+                    { $inc: {allTime: sendTime },
+                        $push:{
+                            sender:{
+                                newtime:sendTime,
+                                createdAt:new Date(),
+                                user: Meteor.userId(),
+                            }
+                        }
+                    },
+                );
+                sendTime = 0;
+            }
+        };
+        function increment(){
+            if (running === 1) {
+                setTimeout(function(){
+                    time++;
+                    var mins= Math.floor(time/10/60);
+                    var secs= Math.floor(time/10);
+                    var tenths= time%10;
+                    tempSessionId=Session.get("sessionUserId")
+                    document.getElementById('displayTime'+tempSessionId).innerHTML = mins+":"+secs+":"+tenths;
+                    increment();
+                },100);
+            }
+        };
+        startPause();
+    },
+
     "submit .pgcdComment": function(event){
         var text = event.target.replyText.value;
         var commentId = new Meteor.Collection.ObjectID();   //variable to insert a uniqueId to the comment.  makes it easier to delete the comment
@@ -169,11 +316,9 @@ Template.postedGidoModal.events({
         return false;
     },
     "click #delete-comment-Modal": function(event, template){
-        var tempCommentId = $(event.target).parent().find('#commentIdPass-mpgcd').text();
+        var tempCommentId = $(event.target).text();
         var tempPost = Posts.find({comments:{$elemMatch:{commentId:tempCommentId}}}).fetch();
         var tempPostId=tempPost[0]._id;
-        console.log(tempCommentId);
-        console.log(tempPostId);
         Posts.update(
             {_id:tempPostId},
             {$pull:{
@@ -188,101 +333,8 @@ Template.postedGidoModal.events({
         });
     },
     "click .makePublicToggle": function(){
-        console.log(111);
         Posts.update(this._id, {
             $set:{madePublic: ! this.aaa}
-        });
-    },
-});
-
-// Template.poster.events({
-//     "click #friendRequestBtn": function(event){
-//         var tempPostObj = Posts.findOne({"_id":Session.get('postId')});
-//         var checkStatus = 0;
-//         if (Meteor.user().profile.friendRequestPending) {
-//             for (var i = 0; i < Meteor.user().profile.friendRequestPending.length; i++) {
-//                 if (Meteor.user().profile.friendRequestPending[i] === tempPostObj.userId) {
-//                     checkStatus += 1;
-//                 }
-//             }
-//         };
-//         if (Meteor.user().profile.friendRequestSent) {
-//             for (var i = 0; i < Meteor.user().profile.friendRequestSent.length; i++) {
-//                 if (Meteor.user().profile.friendRequestSent[i] === tempPostObj.userId) {
-//                     checkStatus += 1;
-//                 }
-//             }
-//         };
-//         if (Meteor.user().profile.friendConnected) {
-//             for (var i = 0; i < Meteor.user().profile.friendConnected.length; i++) {
-//                 if (Meteor.user().profile.friendConnected[i] === tempPostObj.userId) {
-//                     checkStatus += 1;
-//                 }
-//             }
-//         };
-//
-//         if (checkStatus === 0) {
-//             FriendshipCollection.insert({
-//                 createdAt: new Date(),
-//                 initiatedUser: Meteor.userId(),
-//                 initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
-//                 receivedUser: tempPostObj.userId,
-//                 receivedUsername: tempPostObj.username,
-//                 status:1,
-//             });
-//             Meteor.users.update(
-//                     {_id:Meteor.userId()},
-//                     {$push :
-//                         {'profile.friendRequestPending':tempPostObj.userId}
-//                     }
-//             );
-//         } else {
-//             FlashMessages.sendError("이미 친구 신청을 보냈습니다");
-//         };
-//     }
-// });
-
-Template.user.events({
-    "click #friendRequestAcceptBtn": function(event){
-        Meteor.users.update(
-                {_id:Meteor.userId()},
-                {$push :
-                    {'profile.friendRequestAccepted':Session.get('friendRequestId')}
-                }
-        );
-        Meteor.users.update(
-                {_id:Meteor.userId()},
-                {$pull :
-                    {'profile.friendRequestPending':Session.get('friendRequestId')}
-                }
-        );
-        FriendshipCollection.insert({
-            createdAt: new Date(),
-            initiatedUser: Meteor.userId(),
-            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
-            receivedUser: Session.get('friendRequestId'),
-            status:2,
-        });
-    },
-    "click #friendRequestDeclineBtn": function(event){
-        Meteor.users.update(
-                {_id:Meteor.userId()},
-                {$push :
-                    {'profile.friendRequestDeclined':Session.get('friendRequestId')}
-                }
-        );
-        Meteor.users.update(
-                {_id:Meteor.userId()},
-                {$pull :
-                    {'profile.friendRequestPending':Session.get('friendRequestId')}
-                }
-        );
-        FriendshipCollection.insert({
-            createdAt: new Date(),
-            initiatedUser: Meteor.userId(),
-            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
-            receivedUser: Session.get('friendRequestId'),
-            status:3,
         });
     },
 });

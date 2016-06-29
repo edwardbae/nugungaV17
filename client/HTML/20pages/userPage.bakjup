@@ -1,0 +1,35 @@
+<template name="user">
+    User Page xxx
+    {{#each requests}}
+    <div class="myProfileCardDiv whiteDiv boxShadow1 container">
+        <div class="row">
+            <div class="col-xs-4 leftcolumn">
+                <div class="profileImg text-center">
+                    <img src="/img/profileAnonymM.png" alt="" />
+                </div>
+                    <div class="friendBtnAccept text-center">
+                        {{friendshipStatus}}
+                            <button id="friendRequestAcceptBtn" type="button" class="btn btn-success btn-xs">친구연결</button>
+                            <button id="friendRequestDeclineBtn" type="button" class="btn btn-danger btn-xs ">친구거절</button>
+                    </div>
+            </div>
+            <div class="col-xs-8 rightcolumn">
+                <div class="username">
+                    {{username}} - {{_id}}
+                </div>
+                <div class="selfIntro">
+                    로렘 입숨은 출판이나 그래픽 디자인 시각적 연출 보여줄 사용하는 표준 채우기 텍스트
+                </div>
+                <div class="statGido1">
+                    <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+                    13번 기도 요청
+                    <br>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    1시간 14분44초 총기도시간
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+{{/each}}
+</template>
