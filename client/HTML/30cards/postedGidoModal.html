@@ -7,12 +7,25 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <a href="{{pathFor 'user'}}">
 
-                        {{#if $eq currentUser.username username}}
-                        <h4 class="modal-title" id="myModalLabel">my gido</h4>
-                        {{else}}
-                        <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
-                        {{/if}}
-                        <span class="date"><small>{{momentYear}}년 {{momentDate}}  &middot; {{momentTime}}</small></span>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-4 proImg">
+                                <img src="{{getProfileImage userId}}" alt="" />
+                            </div>
+                            <div class="col-xs-8">
+                                {{#if $eq currentUser.username username}}
+                                <h4 class="modal-title" id="myModalLabel">my gido</h4>
+                                {{else}}
+                                <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
+                                {{/if}}
+                                <span class="date"><small>{{momentYear}}년 {{momentDate}}  &middot; {{momentTime}}</small></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     </a>
                 </div>
                 <div class="modal-body">

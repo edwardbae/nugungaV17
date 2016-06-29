@@ -11,6 +11,93 @@ Template.allPostedGidoCard.events({
     }
 });
 
+Template.profilePage.events({
+    'submit .edit-profile': function(event){
+        var file = $('#profileImage').get(0).files[0];
+        if (file) {
+            fsFile = new FS.File(file);
+            ProfileImages.insert(fsFile, function(err, result){
+                if (err) {
+                    throw new Meteor.Error(err);
+                } else {
+                    var imageLoc = '/cfs/files/ProfileImages/'+result._id;
+                    UserImages.insert({
+                        userId: Meteor.userId(),
+                        username: Meteor.user().username,
+                        image: imageLoc
+                    });
+                    Router.go('profilePage');
+                }
+            });
+        }
+        return false;
+    }
+});
+
+
+Template.user.events({
+    "click #friendRequestBtn": function(event){
+        var friendId = Session.get('friendRequestId');
+        var tempPostObj=Meteor.users.find({_id:friendId}).fetch()[0];
+        FriendshipCollection.insert({
+            createdAt: new Date(),
+            initiatedUser: Meteor.userId(),
+            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
+            receivedUser: tempPostObj._id,
+            receivedUsername: tempPostObj.username,
+            status:1,
+        });
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$push :
+                    {'profile.friendRequestSent':tempPostObj._id}
+                }
+        );
+    },
+    "click #friendRequestAcceptBtn": function(event){
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$push :
+                    {'profile.friendRequestAccepted':Session.get('friendRequestId')}
+                }
+        );
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$pull :
+                    {'profile.friendRequestRecieved':Session.get('friendRequestId')}
+                }
+        );
+        FriendshipCollection.insert({
+            createdAt: new Date(),
+            initiatedUser: Meteor.userId(),
+            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
+            receivedUser: Session.get('friendRequestId'),
+            status:2,//status 2 meaning friendship accepted
+        });
+    },
+    "click #friendRequestDeclineBtn": function(event){
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$push :
+                    {'profile.friendRequestDeclined':Session.get('friendRequestId')}
+                }
+        );
+        Meteor.users.update(
+                {_id:Meteor.userId()},
+                {$pull :
+                    {'profile.friendRequestRecieved':Session.get('friendRequestId')}
+                }
+        );
+        FriendshipCollection.insert({
+            createdAt: new Date(),
+            initiatedUser: Meteor.userId(),
+            initiatedUsername: Meteor.users.findOne(Meteor.userId()).username,
+            receivedUser: Session.get('friendRequestId'),
+            status:3,
+        });
+    },
+});
+
 
 Template.friendsListCard.events({
     "click #friendModal": function(event, template){

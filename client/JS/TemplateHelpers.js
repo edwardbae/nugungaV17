@@ -27,7 +27,44 @@ Template.answeredPostedGidoCard.helpers({
     },
 });
 
-
+Template.user.helpers({
+    requests: function(){
+        var friendId = Session.get('friendRequestId');
+        return Meteor.users.find({_id:friendId});
+    },
+    friendRequestSent:function(){
+        var friendId = Session.get('friendRequestId');
+        if (Meteor.users.find({  $and:[{_id:Meteor.userId()}, {"profile.friendRequestSent":friendId}  ] }).fetch()[0]) {
+            return 1
+        } else {
+            return 0
+        }
+    },
+    friendRequestRecieved:function(){
+        var friendId = Session.get('friendRequestId');
+        if (Meteor.users.find({  $and:[{_id:Meteor.userId()}, {"profile.friendRequestRecieved":friendId}  ] }).fetch()[0]) {
+            return 1
+        } else {
+            return 0
+        }
+    },
+    friendRequestAccepted:function(){
+        var friendId = Session.get('friendRequestId');
+        if (Meteor.users.find({  $and:[{_id:Meteor.userId()}, {"profile.friendRequestAccepted":friendId}  ] }).fetch()[0]) {
+            return 1
+        } else {
+            return 0
+        }
+    },
+    friendRequestDeclined:function(){
+        var friendId = Session.get('friendRequestId');
+        if (Meteor.users.find({  $and:[{_id:Meteor.userId()}, {"profile.friendRequestDeclined":friendId}  ] }).fetch()[0]) {
+            return 1
+        } else {
+            return 0
+        }
+    },
+});
 
 Template.friendsListCard.helpers({
     friendsGido: function(){
@@ -57,7 +94,12 @@ Template.friendsListCard.helpers({
         if (Meteor.users.findOne(Meteor.userId())) {
             return Meteor.users.findOne(Meteor.userId()).profile.friendRequestAccepted;
         }
-  },
+    },
+    friendImg: function(tempId){
+        var imgUrl = UserImages.findOne({userId: tempId}).image;
+        return imgUrl;
+    },
+
 });
 
 Template.navbarBottom.helpers({

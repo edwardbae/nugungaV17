@@ -47,3 +47,6 @@ fastclick
 aldeed:autoform
 aldeed:collection2
 afruth:chapp
+
+cfs:standard-packages
+cfs:gridfs

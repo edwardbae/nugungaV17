@@ -17,6 +17,11 @@ Template.registerHelper('momentDate', function(){
 Template.registerHelper('momentYear', function(){
     return moment(this.createdAt).format('YYYY');
 });
+Template.registerHelper('getProfileImage', function(tempId){
+        var imgUrl = UserImages.findOne({userId: tempId}).image;
+        return imgUrl;
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //xxx here i have a problem when there are no chatHistory exists.  it should return "<- 아직 시작한 대화가 없습니다 ->", but instead returns an error on console window;
 Template.friendsListCard.helpers({
