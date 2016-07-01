@@ -10,6 +10,12 @@
 .postedGidoCardDiv a{
     text-decoration: none;
 }
+.postedGidoCardDiv .imgCol{
+
+}
+.postedGidoCardDiv .name{
+    border-left: 1px solid #eee;
+}
 .aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{}
 .pgcdHeader{
     font-size: .8em;
@@ -44,3 +50,10 @@
     font-size: 0.9em;
 }
 .aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{}
+.postedGidoCardDiv .name .apgcHeader{
+}
+.postedGidoCardDiv .name .apgcBody{
+}
+.postedGidoCardDiv .name .apgcFooter{
+    color: #ccc;
+}

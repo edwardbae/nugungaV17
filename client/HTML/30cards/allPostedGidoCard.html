@@ -4,13 +4,22 @@
         <div class="friendsListCard postedGidoCardDiv boxShadow0 container">
             <div class="row">
                 <div class="col-xs-3 imgCol text-center">
-                    <img src="{{getProfileImage userId}}" alt="" />
+                    {{#if anonymous}}
+                        <img src="img/apple-touch-icon-iphone.png" alt="" style="border-radius:200px; border: 1px solid #69a2b2"/>
+                    {{else}}
+                        <img src="{{getProfileImage userId}}" alt="" style="border-radius:200px;"/>
+                    {{/if}}
+                    <div class="friendName" style="font-size:0.7em"><span>{{checkAnonymous anonymous username}}</span></div>
                 </div>
                 <div class="col-xs-9 name">
-                    <div class="friendName floatLeft"><small>{{username}}</small></div>
-                    <div class="friendTime floatRight"><small>{{momentYear}}년 {{momentDate}}</small></div>
-                    <div class="friendPost floatClear"><small>{{gidoPost}} </small></div>
-                    <small class="comment floatRight"> - 댓글({{checkComment _id}}) </small>
+                    <div class="apgcHeader">
+                        <div class="friendTime" style="font-size:0.6em"><span>{{momentYear}}년 {{momentDate}}</span><span class="floatRight">총기도시간: {{allTime}}</span></div>
+                    </div>
+                    <div class="apgcBody">
+                        <div class="friendPost"><small>{{gidoPost}} </small></div>
+                        <br>
+                    </div>
+
                 </div>
             </div>
         </div>

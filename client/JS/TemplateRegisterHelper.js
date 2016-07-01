@@ -67,7 +67,7 @@ Template.registerHelper('checkAnonymous', function(anonymous, username, userId){
     if (anonymous === false) {
         return username;
     } else {
-        return "nugunga";
+        return "누군가";
     }
 });
 Template.registerHelper('checkAnonymousLink', function(anonymous){
@@ -221,9 +221,3 @@ Template.registerHelper('updateFriendshipStatus', function(){
 // //         }
 // //     }
 // // });
-
-// // Template.registerHelper('getProfileImg', function(userId){
-// //     var imgUrl=UserImages.findOne({userId: userId}).image;
-// //     return imgUrl;
-// // });
-//

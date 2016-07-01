@@ -40,7 +40,9 @@
 .postedGidoModalDiv .modalbody-comment #delete-comment{
 }
 .pgcdComment input{
-    width: 80%;
+    width: 90%;
+    background: #eee;
+    border: none;
 }
 .postedPrayerReplies .selfComment{
 }
@@ -50,4 +52,14 @@
     margin-top: 30px;
     padding-left: 30px;
     padding-right: 30px;
+}
+
+#startPrayerPGM{
+    background: #69a2b2;
+    border: none;
+}
+.modal-footer button{
+    background: none;
+    color: #4d4d4d;
+    border: 1px solid #ddd;
 }

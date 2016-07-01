@@ -3,21 +3,22 @@
         <div class="bluebar"></div>
         <div class="container">
             <div class="row">
-                <div class="col-xs-9 navbarTitleDiv">
-                    <a class="navbarTitle" href="/">{{renderSession}} - {{currentUser.username}}</a>
-                </div>
-                <div class="col-xs-3">
-                    <a href="#" class="collapsed glyphicon glyphicon-cog floatRight" data-toggle="collapse" data-target="#navbarMain" aria-expanded="false" aria-controls="navbar" aria-hidden="true" style="font-size:1.4em; padding-top:6px;"></a>
-                </div>
-            </div>
-            <div id="navbarMain" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    {{#if currentUser}}
-                    <li><a href="{{pathFor 'friendRequestPage'}}">친구 관리</a></li>
-                    <li><a href="{{pathFor 'profilePage'}}">설정</a></li>
-                    {{/if}}
+                <div class="col-xs-4" style="list-style:none; padding-top:10px;">
                     {{> loginButtons}}
-                </ul>
+                </div>
+                <div class="col-xs-4 navbarTitleDiv text-center">
+                    <a class="navbarTitle" href="/">nugunga</a>
+                    <!-- <a class="navbarTitle" href="/">{{renderSession}}</a> -->
+                </div>
+                <div class="col-xs-4">
+                    {{#if currentUser}}
+                        <a href="{{pathFor 'profilePage'}}" class="glyphicon glyphicon-cog floatRight" style="list-style:none; padding-top:10px; "></a>
+                    {{/if}}
+                </div>
+
+            </div>
+            <div id="navbarMain" class="">
+
             </div>
         </div>
     </nav>

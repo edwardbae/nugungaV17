@@ -3,16 +3,16 @@
         <div id="navbar" class="container">
             <div class="row">    {{makeactive}}
                 <div class="navMenu col-xs-3 text-center">
-                    <a href="{{pathFor 'myGidoPage'}}" id="myGido" class="glyphicon glyphicon-home" aria-hidden="true"></a>
+                    <a href="{{pathFor 'myGidoPage'}}" id="myGido" class="glyphicon glyphicon-home" aria-hidden="true"><br><span style="font-size:0.7em">홈</span></a>
                 </div>
                 <div class="navMenu col-xs-3 text-center">
-                    <a href="{{pathFor 'friendsGidoPage'}}" id="friendGido" class="fa fa-users" aria-hidden="true"></a>
+                    <a href="{{pathFor 'friendsGidoPage'}}" id="friendGido" class="fa fa-users" aria-hidden="true"><br><span style="font-size:0.7em">친구</span></a>
                 </div>
                 <div class="navMenu col-xs-3 text-center">
-                    <a href="{{pathFor 'allGidoPage'}}" id="allGido" class="fa fa-globe" aria-hidden="true"></a>
+                    <a href="{{pathFor 'allGidoPage'}}" id="allGido" class="fa fa-globe" aria-hidden="true"><br><span style="font-size:0.7em">중보</span></a>
                 </div>
                 <div class="navMenu col-xs-3 text-center">
-                    <a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myGidoModal"></a>
+                    <a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myGidoModal"><br><span style="font-size:0.7em">기도</span></a>
                 </div>
             </div>
         </div>
@@ -24,11 +24,14 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">my gido</h4>
+            <h4 class="modal-title" id="myModalLabel">나의 기도제목</h4>
           </div>
           {{#autoForm collection="Posts" id="insertPostForm" type="insert"}}
               <div class="modal-body">
                     {{> afQuickField name="gidoPost" rows=6 placeholder="오늘의 기도를 적어주세요"}}
+                    {{> afQuickField name="madePublic" type="boolean-checkbox"}}
+                    {{> afQuickField name="anonymous" type="boolean-checkbox"}}
+
               </div>
               <div class="modal-footer">
                 <button id="navbarGidoPost" type="submit" class="btn btn-primary floatLeft">Save</button>
