@@ -50,6 +50,11 @@ Template.registerHelper('loggedInDate', function(){
     );
     var tempLoggedInDate = Meteor.user(Meteor.userId()).profile.loggedin;
     lastLoggedInDate = tempLoggedInDate[tempLoggedInDate.length-2];
+    /////////make flashmessages here for new gido time and everything!!!!
+
+    if (Posts.find( { $and: [ {users:Meteor.userId()},{prayedBy:{$elemMatch:{ createdAt: { $gt: lastLoggedInDate }}}}]}).fetch().length!==0) {
+        FlashMessages.sendError("누군가 님의 기도제목을 위해  기도를 했습니다", { autoHide: false });
+    }
     if (Chat.find( { $and: [ {users:Meteor.userId()},{chatHistory:{$elemMatch:{ createdAt: { $gt: lastLoggedInDate }}}}]}).fetch().length!==0) {
         FlashMessages.sendError("새로운 기도방 메세지가 있습니다", { autoHide: false });
     }

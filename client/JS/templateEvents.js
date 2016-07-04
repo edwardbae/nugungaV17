@@ -11,29 +11,74 @@ Template.allPostedGidoCard.events({
     }
 });
 
+
 Template.profilePage.events({
     'submit .edit-profile': function(event){
         var file = $('#profileImage').get(0).files[0];
-        if (file) {
-            fsFile = new FS.File(file);
-            ProfileImages.insert(fsFile, function(err, result){
-                if (err) {
-                    throw new Meteor.Error(err);
-                } else {
-                    var imageLoc = '/cfs/files/ProfileImages/'+result._id;
-                    UserImages.insert({
-                        userId: Meteor.userId(),
-                        username: Meteor.user().username,
-                        image: imageLoc
-                    });
-                    Router.go('profilePage');
-                }
-            });
+        console.log(file);
+        var currentImg = UserImages.findOne({userId:Meteor.userId()});
+        if (currentImg) {
+            if (file) {
+                fsFile = new FS.File(file);
+                ProfileImages.remove({_id:currentImg.cfsId});
+                ProfileImages.insert(fsFile, function(err, result){
+                    if (err) {
+                        throw new Meteor.Error(err);
+                    } else {
+                        UserImages.remove({_id:currentImg._id})
+                        var imageLoc = '/cfs/files/ProfileImages/'+result._id;
+                        UserImages.insert({
+                            userId: Meteor.userId(),
+                            username: Meteor.user().username,
+                            image: imageLoc,
+                            cfsId:result._id
+                        });
+                        location.href = "profilePage";
+                    }
+                });
+            }
+
+        }
+        else {
+            if (file) {
+                fsFile = new FS.File(file);
+                ProfileImages.insert(fsFile, function(err, result){
+                    if (err) {
+                        throw new Meteor.Error(err);
+                    } else {
+                        var imageLoc = '/cfs/files/ProfileImages/'+result._id;
+                        UserImages.insert({
+                            userId: Meteor.userId(),
+                            username: Meteor.user().username,
+                            image: imageLoc,
+                            cfsId:result._id
+                        });
+                        location.href = "profilePage";
+                    }
+                });
+            }
         }
         return false;
     }
 });
 
+
+Template.friendsGidoPage.events({
+    "click #friendsGidoPageBtn": function(event){
+        Router.go('friendsGidoPage');
+    },
+    "click #friendRequestPageBtn": function(event){
+        Router.go('friendRequestPage');
+    },
+});
+Template.friendRequestPage.events({
+    "click #friendsGidoPageBtn": function(event){
+        Router.go('friendsGidoPage');
+    },
+    "click #friendRequestPageBtn": function(event){
+        Router.go('friendRequestPage');
+    },
+});
 
 Template.user.events({
     "click #friendRequestBtn": function(event){
@@ -104,7 +149,7 @@ Template.friendsListCard.events({
         tempCapture = this.valueOf();
         Session.set("sessionUserId", tempCapture)
     },
-    "click #startPrayer": function(event){
+    "click #startPrayerFLC": function(event){
         tempSessionId=Session.get("sessionUserId")
         function startPause(){
             if (running === 0) {

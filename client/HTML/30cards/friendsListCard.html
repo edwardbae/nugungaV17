@@ -25,14 +25,19 @@
             <h4 class="modal-title">{{findUsername this}}</h4>
           </div>
           <div class="modal-body text-center">
-              <div id="displayTime{{this}}" style="font-size:1.2em; font-weight:strong;">
-                  0:0:0
+              <div style="font-size:1.2em; font-weight:strong;">
+                  {{friendPrayerTimeByMe this}}
               </div> <br>
-              <div id="resultText" style="font-size:1.2em; font-weight:strong;">
+              <!-- <div id="resultText" style="font-size:1.2em; font-weight:strong;">
                  누군가 기도
-              </div> <br>
-                <button id="startPrayer" type="button" class="btn btn-primary">기도하기</button>
-                <button id="enterChat" type="button" class="btn btn-primary">기도방</button>
+              </div> <br> -->
+              <button id="startPrayerFLC" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1">
+                  <!-- 총기도시간: {{friendPrayerTime this}}<br> -->
+                  <span id="displayTime{{this}}">기도하기</span>
+              </button>
+
+                <!-- <button id="startPrayer" type="button" class="btn btn-primary">기도하기</button> -->
+                <button id="enterChat" type="button" class="btn btn-primary btn-block">기도방</button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

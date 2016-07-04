@@ -2,6 +2,21 @@ var lastUpdated;
 
 Session.setDefault('updated', new Date());
 
+Template.navbarBottom.helpers({
+    assignGenericProfileImg: function(){
+        var currentImg = UserImages.findOne({userId:Meteor.userId()});
+        if (currentImg) {
+        } else {
+            var imageLoc = '/cfs/files/ProfileImages/7Wqx3Ydzd9kgiNL6j';
+            UserImages.insert({
+                userId: Meteor.userId(),
+                username: Meteor.user().username,
+                image: imageLoc,
+            });
+        }
+    },
+});
+
 Template.postedGidoCard.helpers({
     postsByMe: function(){
         return Posts.find({userId:Meteor.userId()},{sort:{createdAt: -1 }});
@@ -95,6 +110,13 @@ Template.friendsListCard.helpers({
             return Meteor.users.findOne(Meteor.userId()).profile.friendRequestAccepted;
         }
     },
+    friendPrayerTime: function(thisuser){
+        return PrayerTime.findOne({receivedUser:thisuser}).allTime;
+    },
+    friendPrayerTimeByMe: function(thisuser){
+        console.log(  PrayerTime.find(   {  $and:[{receivedUser:thisuser}, {"sender.user":"Pg8NqR4qyNv8YNnky"}  ] }     ).fetch()[0].sender    )  ;
+    },
+
     friendImg: function(tempId){
         var imgUrl = UserImages.findOne({userId: tempId}).image;
         return imgUrl;
@@ -127,8 +149,10 @@ Template.navbarBottom.helpers({
 Template.landing.helpers({
     runSim: function(){
         setTimeout(function(){ swal("다시오신것 환영합니다!", "누군가 "+Meteor.user(Meteor.userId()).username+"님을 위해 3분 43초동안 기도를 했습니다") }, 500);
-
-    }
+    },
+    // assignProfileImg: function(){
+    //
+    // };
 });
 
 Template.chatroom.helpers({

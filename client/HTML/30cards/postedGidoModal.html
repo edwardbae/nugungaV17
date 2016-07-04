@@ -5,32 +5,43 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a href="{{pathFor 'user'}}">
-
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-4 proImg">
-                                {{#if anonymous}}
-                                    <img src="img/apple-touch-icon-iphone.png" alt="" style="border-radius:200px; border: 1px solid #69a2b2"/>
-                                {{else}}
-                                    <img src="{{getProfileImage userId}}" alt="" style="border-radius:200px;"/>
-                                {{/if}}
-                            </div>
-                            <div class="col-xs-8">
-                                {{#if $eq currentUser.username username}}
-                                <h4 class="modal-title" id="myModalLabel">나의기도</h4>
-                                {{else}}
-                                <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
-                                {{/if}}
-                                <span class="date"><small>{{momentYear}}년 {{momentDate}} </small></span>
+                    {{#if anonymous}}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-4 proImg">
+                                        <img src="img/apple-touch-icon-iphone.png" alt="" style="border-radius:200px; border: 1px solid #69a2b2"/>
+                                </div>
+                                <div class="col-xs-8">
+                                    {{#if $eq currentUser.username username}}
+                                    <h4 class="modal-title" id="myModalLabel">나의기도</h4>
+                                    {{else}}
+                                    <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
+                                    {{/if}}
+                                    <span class="date"><small>{{momentYear}}년 {{momentDate}} </small></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-
-
+                    {{else}}
+                    <a href="{{pathFor 'user'}}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-4 proImg">
+                                        <img src="{{getProfileImage userId}}" alt="" style="border-radius:200px;"/>
+                                </div>
+                                <div class="col-xs-8">
+                                    {{#if $eq currentUser.username username}}
+                                    <h4 class="modal-title" id="myModalLabel">나의기도</h4>
+                                    {{else}}
+                                    <h4 class="modal-title" id="myModalLabel">{{checkAnonymous anonymous username}}</h4>
+                                    {{/if}}
+                                    <span class="date"><small>{{momentYear}}년 {{momentDate}} </small></span>
+                                </div>
+                            </div>
+                        </div>
                     </a>
+
+                    {{/if}}
                 </div>
                 <div class="modal-body">
 
@@ -46,10 +57,17 @@
                         {{gidoPost}}
                     </div>
                     <br>
+                    {{#if $eq currentUser.username username}}
+                    <button id="startPrayerPGM" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1" disabled>
+                        총기도시간: {{allTime}}<br>
+                    </button>
+                    {{else}}
                     <button id="startPrayerPGM" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1">
                         총기도시간: {{allTime}}<br>
                         <span id="displayBtn{{_id}}">기도하기</span>
                     </button>
+                    {{/if}}
+
                     <div class="modalbody-comment postedPrayerReplies">
                         <hr>
                         <ul>

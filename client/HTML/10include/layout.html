@@ -10,14 +10,16 @@
     {{checkNewMessages}}
 
     {{> navbarTop}}
-    {{> yield}}
-    {{#if currentUser}}
 
+    {{#if currentUser}}
+        {{> yield}}
         {{#if checkroomname}}
             {{> chatNavbarBottom}}
         {{else}}
             {{> navbarBottom}}
         {{/if}}
+    {{else}}
+        {{> landing}}
     {{/if}}
 
 </template>

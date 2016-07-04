@@ -11,15 +11,19 @@
 }
 .navbar-fixed-top .navbarTitle{
     font-size: 1.4em;
+    font-weight: bold;
     color:#69a2b2;
 }
-.navbar-fixed-top .glyphicon-log-in{
+.navbar-fixed-top .glyphicon-cog{
     padding: 0;
     padding-top: 12px;
     padding-bottom: 6px;
     padding-right: 10px;
     font-size: 1.4em;
-    color:#69a2b2;
+    color:#ccc;
+    padding-top:10px;
+    list-style:none;
+
 }
 .navbar-fixed-top ul{
     list-style: none;
