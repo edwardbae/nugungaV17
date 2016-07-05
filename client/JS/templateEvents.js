@@ -12,6 +12,7 @@ Template.allPostedGidoCard.events({
 });
 
 
+
 Template.profilePage.events({
     'submit .edit-profile': function(event){
         var file = $('#profileImage').get(0).files[0];
@@ -70,6 +71,9 @@ Template.friendsGidoPage.events({
     "click #friendRequestPageBtn": function(event){
         Router.go('friendRequestPage');
     },
+    "click #friendSearchPageBtn": function(event){
+        Router.go('friendSearchPage');
+    },
 });
 Template.friendRequestPage.events({
     "click #friendsGidoPageBtn": function(event){
@@ -77,6 +81,20 @@ Template.friendRequestPage.events({
     },
     "click #friendRequestPageBtn": function(event){
         Router.go('friendRequestPage');
+    },
+    "click #friendSearchPageBtn": function(event){
+        Router.go('friendSearchPage');
+    },
+});
+Template.friendSearchPage.events({
+    "click #friendsGidoPageBtn": function(event){
+        Router.go('friendsGidoPage');
+    },
+    "click #friendRequestPageBtn": function(event){
+        Router.go('friendRequestPage');
+    },
+    "click #friendSearchPageBtn": function(event){
+        Router.go('friendSearchPage');
     },
 });
 
@@ -267,7 +285,13 @@ Template.navbarBottom.events({
 Template.allGidoPage.events({
     "click #showNewPosts": function(event, template){
         Session.set("updated", new Date());
+    },
+    "click #showNextPosts": function(event, template){
+        console.log("click");
+        var pagenumber =  Session.get('current_page') + 1;
+        Session.set("current_page", pagenumber);
     }
+
 });
 Template.postedGidoCard.events({
     "click #delete-post": function(){

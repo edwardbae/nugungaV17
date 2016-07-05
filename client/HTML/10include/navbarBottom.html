@@ -3,13 +3,13 @@
         <div id="navbar" class="container">
             <div class="row">    {{makeactive}}
                 <div class="navMenu col-xs-3 text-center">
-                    <a href="{{pathFor 'myGidoPage'}}" id="myGido" class="glyphicon glyphicon-home" aria-hidden="true"><br><span style="font-size:0.7em">홈</span></a>
+                    <a href="{{pathFor 'allGidoPage'}}" id="allGido" class="fa fa-globe" aria-hidden="true"><br><span style="font-size:0.7em">중보</span></a>
                 </div>
                 <div class="navMenu col-xs-3 text-center">
                     <a href="{{pathFor 'friendsGidoPage'}}" id="friendGido" class="fa fa-users" aria-hidden="true"><br><span style="font-size:0.7em">친구</span></a>
                 </div>
                 <div class="navMenu col-xs-3 text-center">
-                    <a href="{{pathFor 'allGidoPage'}}" id="allGido" class="fa fa-globe" aria-hidden="true"><br><span style="font-size:0.7em">중보</span></a>
+                    <a href="{{pathFor 'myGidoPage'}}" id="myGido" class="fa fa-user" aria-hidden="true"><br><span style="font-size:0.7em">나의</span></a>
                 </div>
                 <div class="navMenu col-xs-3 text-center">
                     <a href="#" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myGidoModal"><br><span style="font-size:0.7em">기도</span></a>
@@ -41,6 +41,6 @@
         </div>
       </div>
     </div> <!-- end Modal -->
-    {{assignGenericProfileImg}}
+
 
 </template>

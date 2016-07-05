@@ -32,7 +32,7 @@ Template.postedGidoCard.helpers({
 Template.allPostedGidoCard.helpers({
     allPosts: function(){
         lastUpdated = Session.get('updated');
-        return Posts.find({madePublic:true, createdAt: { $lt: lastUpdated }},{sort:{createdAt: -1 }});
+        return Posts.find(  {madePublic:true, createdAt: { $lt: lastUpdated }},     {sort:{createdAt: -1 },limit: Session.get("current_page")*20 }     );
     },
 });
 

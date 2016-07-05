@@ -1,0 +1,36 @@
+<template name="friendSearchPage">
+    <div class="container">
+        <div class="text-center" style="color:#69a2b2;padding-bottom:10px;">
+            <div class="btn-group" role="group" aria-label="...">
+                <button id="friendsGidoPageBtn" type="button" class="btn btn-default">친구리스트</button>
+                <button id="friendRequestPageBtn" type="button" class="btn btn-default">친구관리</button>
+                <button id="friendSearchPageBtn" type="button" class="btn btn-default active">친구검색</button>
+            </div>
+        </div>
+        <br>
+        <div class="searchField">
+            <form class="searchUsernameClass">
+              검색하고 싶은 성도의 이름<br>
+              <input type="text" name="searchUsername">
+              <input id="searchUsernameId" type="submit" value="검색">
+            </form>
+            <br>
+        </div>
+        <br>
+
+        <div class="postedGidoCardDiv boxShadow0 container">
+            검색결과: <a href="" id="displaySearchResult"></a>
+        </div>
+
+        <!-- <form class="pgcdComment text-center">
+            <input type="text" name="replyText" placeholder="댓글">
+        </form> -->
+
+
+
+
+    </div>
+
+
+
+</template>
