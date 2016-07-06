@@ -6,7 +6,12 @@
         <h2 class="centerText">개인 프로필 </h2>
         <br>
         <div class="col-sm-4 ">
-            <img src="{{getProfileImage currentUser._id}}" alt="" style="width:60%; border-radius:1000px;"/>
+                <img src="{{checkProfileImage currentUser._id}}" alt="" style="width:60%; border-radius:1000px;"/>
+            <!-- {{#if checkProfileImg}}
+                <img src="{{getProfileImage currentUser._id}}" alt="" style="width:60%; border-radius:1000px;"/>
+            {{else}}
+                <img src="img/generic_avatar_300.png" alt="" style="width:60%; border-radius:1000px;"/>
+            {{/if}} -->
         </div>
         <div class="col-sm-8">
             <form  class="edit-profile" enctype="multipart/form-data">

@@ -4,6 +4,25 @@ var tempCapture;
 var tempSessionId;
 var sendTime = 0;
 
+Template.friendSearchPage.events({
+    "submit .searchUsernameClass": function(event){
+        event.preventDefault();
+        var text = event.target.searchUsername.value;
+        var searchResult = Meteor.users.find({username:text}).fetch()[0];
+        if (searchResult) {
+            document.getElementById('displaySearchResult').innerHTML = searchResult.username
+            Session.set("friendSearchId", searchResult._id)
+        } else {
+            document.getElementById('displaySearchResult').innerHTML = "등록이 되어 있지 않은 이름입니다"
+        }
+    },
+    "click #displaySearchResult": function(event, template){
+        var tempFriendSearchId = Session.get("friendSearchId")
+        Router.go('/user/'+tempFriendSearchId);
+        return false;
+    },
+})
+
 Template.allPostedGidoCard.events({
     "click #friendModal": function(event){
         tempCapture = this.valueOf();
@@ -11,12 +30,9 @@ Template.allPostedGidoCard.events({
     }
 });
 
-
-
 Template.profilePage.events({
     'submit .edit-profile': function(event){
         var file = $('#profileImage').get(0).files[0];
-        console.log(file);
         var currentImg = UserImages.findOne({userId:Meteor.userId()});
         if (currentImg) {
             if (file) {
@@ -62,7 +78,6 @@ Template.profilePage.events({
         return false;
     }
 });
-
 
 Template.friendsGidoPage.events({
     "click #friendsGidoPageBtn": function(event){
@@ -287,7 +302,6 @@ Template.allGidoPage.events({
         Session.set("updated", new Date());
     },
     "click #showNextPosts": function(event, template){
-        console.log("click");
         var pagenumber =  Session.get('current_page') + 1;
         Session.set("current_page", pagenumber);
     }

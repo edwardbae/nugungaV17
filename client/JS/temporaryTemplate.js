@@ -1,19 +1,49 @@
-Template.friendSearchPage.events({
-    "submit .searchUsernameClass": function(event){
-        event.preventDefault();
-        var text = event.target.searchUsername.value;
-        var searchResult = Meteor.users.find({username:text}).fetch()[0];
-        if (searchResult) {
-            document.getElementById('displaySearchResult').innerHTML = searchResult.username
-            Session.set("friendSearchId", searchResult._id)
-        } else {
-            document.getElementById('displaySearchResult').innerHTML = "등록이 되어 있지 않은 이름입니다"
-        }
-    },
-    "click #displaySearchResult": function(event, template){
-        var tempFriendSearchId = Session.get("friendSearchId")
-        console.log(tempFriendSearchId);
-        Router.go('/user/'+tempFriendSearchId);
-    },
+// Template.registerHelper('assignGenericProfileImg', function(){
+//     var currentImg = UserImages.findOne({userId:Meteor.userId()});
+//     if (currentImg) {
+//         console.log("image found");
+//     } else {
+//         console.log("image not found");
+//         // var imageLoc = '/cfs/files/ProfileImages/genericProfileImg';
+//         // UserImages.insert({
+//         //     userId: Meteor.userId(),
+//         //     username: Meteor.user().username,
+//         //     image: imageLoc,
+//         // });
+//     }
+// });
 
-})
+Template.registerHelper('checkProfileImage', function(){
+    var currentImg = UserImages.findOne({userId:Meteor.userId()});
+    if (currentImg) {
+        console.log("user profile image found");
+        var imgUrl = UserImages.findOne({userId: Meteor.userId()}).image;
+        console.log (imgUrl);
+        return imgUrl
+    } else {
+        console.log("user profile image not found");
+        return "img/generic_avatar_300.png"
+        // var imageLoc = '/cfs/files/ProfileImages/genericProfileImg';
+        // UserImages.insert({
+        //     userId: Meteor.userId(),
+        //     username: Meteor.user().username,
+        //     image: imageLoc,
+        // });
+    }
+});
+
+
+// assignGenericProfileImg: function(){
+//     console.log("assignImg");
+//     var currentImg = UserImages.findOne({userId:Meteor.userId()});
+//     console.log(currentImg);
+//     if (currentImg) {
+//     } else {
+//         var imageLoc = '/cfs/files/ProfileImages/genericProfileImg';
+//         UserImages.insert({
+//             userId: Meteor.userId(),
+//             username: Meteor.user().username,
+//             image: imageLoc,
+//         });
+//     }
+// },

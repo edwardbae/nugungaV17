@@ -2,20 +2,27 @@ var lastUpdated;
 
 Session.setDefault('updated', new Date());
 
-Template.navbarBottom.helpers({
-    assignGenericProfileImg: function(){
-        var currentImg = UserImages.findOne({userId:Meteor.userId()});
-        if (currentImg) {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//xxx here i have a problem when there are no chatHistory exists.  it should return "<- 아직 시작한 대화가 없습니다 ->", but instead returns an error on console window;
+Template.friendsListCard.helpers({
+    latestPost: function(tempuserid){
+        if (Chat.find({users: tempuserid, users:Meteor.userId()}).fetch()[0]) {
+            var temparray =  Chat.findOne({$and:[{users: tempuserid},{users:Meteor.userId()}]}, {sort:{createdAt: -1 }}).chatHistory;
+            returnText = temparray[temparray.length-1].text ;
+            if (returnText.length>50) {
+                var newText = returnText.substring(50, length) + "  .... ";
+                return new Spacebars.SafeString(newText);
+            } else {
+                return returnText;
+            }
         } else {
-            var imageLoc = '/cfs/files/ProfileImages/7Wqx3Ydzd9kgiNL6j';
-            UserImages.insert({
-                userId: Meteor.userId(),
-                username: Meteor.user().username,
-                image: imageLoc,
-            });
-        }
+            return "<- 아직 시작한 대화가 없습니다 ->"
+        };
     },
 });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 Template.postedGidoCard.helpers({
     postsByMe: function(){
@@ -150,22 +157,15 @@ Template.landing.helpers({
     runSim: function(){
         setTimeout(function(){ swal("다시오신것 환영합니다!", "누군가 "+Meteor.user(Meteor.userId()).username+"님을 위해 3분 43초동안 기도를 했습니다") }, 500);
     },
-    // assignProfileImg: function(){
-    //
-    // };
+
 });
 
 Template.chatroom.helpers({
     displayChat: function(){
         var tempIdDisplay = Session.get("friendTempId");
         if (Chat.find({users: tempIdDisplay, users:Meteor.userId()}).fetch()[0]) {
-            console.log("gidoroom found");
-            console.log(Meteor.userId()+" : "+tempIdDisplay);
             return Chat.find({$and:[{users: tempIdDisplay},{users:Meteor.userId()}]}, {sort:{createdAt: -1 }}).fetch()[0].chatHistory;
-        } else {
-            console.log("room not found");
-            console.log(Meteor.userId()+" : "+tempIdDisplay);
-        };
+        }
     },
 });
 
