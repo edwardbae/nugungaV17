@@ -1,19 +1,20 @@
 <template name="postedGidoCard">
     {{#each postsByMe}}
-    <div class="postedGidoCardDiv boxShadow0 {{#if checked}}answeredBorder{{/if}}">
+    <div class="postedGidoCardDiv boxShadow0 {{#if checkAnswered}}answeredBorder{{/if}}">
         <div class="pgcdHeader">
             <span class="makePublic floatLeft {{#if madePublic}}checked{{/if}}"><label><input class="makePublicToggle myCheckbox" type="checkbox" checked={{madePublic}}> 기도공유</label></span>
-            <span class="dateandtime floatRight">{{momentYear}}년 {{momentDate}}</span>
+            <span class="makePublic floatRight {{#if checkAnswered}}checked{{/if}}"><label> 기도응답 &nbsp;<input class="checkAnsweredToggle myCheckbox" type="checkbox" checked={{checkAnswered}}></label></span>
         </div>
         <a href="#" data-toggle="modal" data-target="#myModal{{_id}}">
             <div class="pgcdBody floatClear">
                 <div class="postedPrayer">
                     {{gidoPost}}
-                    <br>
-                    <small class="comment floatRight"> 총기도시간: {{allTime}}</small>
-                    <!-- <small class="comment floatRight"> - 댓글({{checkComment _id}})</small> -->
                 </div>
             </div>
+        <div class="pgcdFooter">
+            <span class="dateandtime">{{momentYear}}년 {{momentDate}}</span><br>
+            <span class="comment">댓글: {{checkComment _id}}  &nbsp;&middot;&nbsp;  총기도시간: {{allTime}}</span>
+        </div>
         </a>
     </div>
     {{> postedGidoModal}}

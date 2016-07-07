@@ -1,8 +1,8 @@
 <template name="postedGidoModal">
     <!-- modal -->
     <div class="postedGidoModalDiv modal fade" id="myModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content {{#if checkAnswered}}answeredBorder{{/if}}">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     {{#if anonymous}}
@@ -57,16 +57,34 @@
                         {{gidoPost}}
                     </div>
                     <br>
-                    {{#if $eq currentUser.username username}}
-                    <button id="startPrayerPGM" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1" disabled>
-                        총기도시간: {{allTime}}<br>
-                    </button>
+
+                    {{#if checkAnswered}}
+                        {{#if answeredPrayerText}}
+                        <div class="answeredBG text-center">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                            <h4>응답내용</h4>
+                            <span class="answeredPrayerText">{{answeredPrayerText}}</span>
+                        </div>
+                        {{else}}
+                        <form class="answeredPrayerClass text-center">
+                            <input type="text" name="answeredPrayer" placeholder="응답내용 쓰기">
+                        </form>
+                        {{/if}}
+
                     {{else}}
-                    <button id="startPrayerPGM" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1">
-                        총기도시간: {{allTime}}<br>
-                        <span id="displayBtn{{_id}}">기도하기</span>
-                    </button>
+                        {{#if $eq currentUser.username username}}
+                        <button id="startPrayerPGM" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1" disabled>
+                            총기도시간: {{allTime}}<br>
+                        </button>
+                        {{else}}
+                        <button id="startPrayerPGM" type="button" class="startPrayerUnique btn btn-success btn-block btn-lg boxShadow1">
+                            총기도시간: {{allTime}}<br>
+                            <span id="displayBtn{{_id}}">기도하기</span>
+                        </button>
+                        {{/if}}
                     {{/if}}
+
 
                     <div class="modalbody-comment postedPrayerReplies">
                         <hr>

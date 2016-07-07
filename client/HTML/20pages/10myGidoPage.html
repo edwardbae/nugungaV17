@@ -1,0 +1,18 @@
+<template name="myGidoPage">
+
+<div class=" postedGidoCardDiv boxShadow0 container">
+    <h3>안녕하세요 {{currentUser.username}}님</h3>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td>나에게 보낸 기도시간</td>
+                <td>{{searchPrayerTime currentUser._id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    {{> postedGidoCard}}
+    <br>
+    <br>
+</template>

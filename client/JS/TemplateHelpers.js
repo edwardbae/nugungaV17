@@ -2,7 +2,6 @@ var lastUpdated;
 
 Session.setDefault('updated', new Date());
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //xxx here i have a problem when there are no chatHistory exists.  it should return "<- 아직 시작한 대화가 없습니다 ->", but instead returns an error on console window;
 Template.friendsListCard.helpers({
@@ -22,7 +21,6 @@ Template.friendsListCard.helpers({
     },
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 Template.postedGidoCard.helpers({
     postsByMe: function(){
@@ -109,7 +107,7 @@ Template.friendsNameCard.helpers({
         if (Meteor.users.findOne(Meteor.userId())) {
             return Meteor.users.findOne(Meteor.userId()).profile.friendlist;
         }
-  },
+    },
 });
 Template.friendsListCard.helpers({
     listFriend: function(){
@@ -123,18 +121,15 @@ Template.friendsListCard.helpers({
     friendPrayerTimeByMe: function(thisuser){
         console.log(  PrayerTime.find(   {  $and:[{receivedUser:thisuser}, {"sender.user":"Pg8NqR4qyNv8YNnky"}  ] }     ).fetch()[0].sender    )  ;
     },
-
     friendImg: function(tempId){
         var imgUrl = UserImages.findOne({userId: tempId}).image;
         return imgUrl;
     },
-
 });
 
 Template.navbarBottom.helpers({
     makeactive: function(){
         var axxxx = Session.get('pageTitle');
-
         if (axxxx==="home") {
             $("#myGido").addClass('active');
             $("#friendGido").removeClass('active');
@@ -157,7 +152,6 @@ Template.landing.helpers({
     runSim: function(){
         setTimeout(function(){ swal("다시오신것 환영합니다!", "누군가 "+Meteor.user(Meteor.userId()).username+"님을 위해 3분 43초동안 기도를 했습니다") }, 500);
     },
-
 });
 
 Template.chatroom.helpers({

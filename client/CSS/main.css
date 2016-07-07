@@ -11,7 +11,13 @@ a{
     color: #303030;
 }
 .answeredBorder{
-    border: 10px #85c0d1 solid;
+    border: 10px #BCB0AC solid;
+}
+.answeredBG{
+    font-size: 0.8em;
+    background: #e2d8d5;
+    padding: 10px;
+    margin: 10px;
 }
 
 .floatRight{

@@ -333,16 +333,19 @@ Template.postedGidoCard.events({
             $set:{checked: ! this.checked}
         });
     },
-    "click .makePublicToggle": function(){1111111
-
+    "click .makePublicToggle": function(){
         Posts.update(this._id, {
             $set:{madePublic: ! this.madePublic}
+        });
+    },
+    "click .checkAnsweredToggle": function(){
+        Posts.update(this._id, {
+            $set:{checkAnswered: ! this.checkAnswered}
         });
     },
 });
 
 Template.postedGidoModal.events({
-
     "click #startPrayerPGM": function(event){
         var tempNewPostId = Session.get("sessionPostId");
         function startPause(){
@@ -466,7 +469,17 @@ Template.postedGidoModal.events({
         };
         startPause();
     },
-
+//////////////////////////////////////////////////////////////////////
+    "submit .answeredPrayerClass": function(event){
+        var insertAnsweredPrayertext = event.target.answeredPrayer.value;
+        console.log(insertAnsweredPrayertext);
+        Posts.update(this._id, {
+            $set:{answeredPrayerText: insertAnsweredPrayertext}
+        });
+        event.target.answeredPrayer.value = "";
+        return false;
+    },
+//////////////////////////////////////////////////////////////////////
     "submit .pgcdComment": function(event){
         var text = event.target.replyText.value;
         var commentId = new Meteor.Collection.ObjectID();   //variable to insert a uniqueId to the comment.  makes it easier to delete the comment
